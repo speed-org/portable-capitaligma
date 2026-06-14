@@ -16,6 +16,33 @@ export enum CARD_TYPE {
     MISSILE = 'missile',
 }
 
+export enum EVENT_CARD_NAME {
+    DROUGHT = "drought",
+    FLOOD = "flood",
+    TORNADO = "tornado",
+    THUNDERSTORM = "thunderstorm",
+    EL_NINO = "el nino",
+    CORRUPTION = "corruption",
+    NEW_THE_WEEKEND_ALBUM = "new the weekend album",
+    RAIN = "rain",
+    SUCCESSFUL_PROPOGANDA = "successful propoganda",
+    GREAT_DEAL = "great deal",
+    SCIENTIFIC_PROGRESS = "scientific progress",
+    NEW_SOURCES = "new sources",
+    PLAGUE = "plague",
+    EARTHQUAKE = "earthquake",
+    DIPLOMATIC_AGREEMENT = "diplomatic agreement",
+    SPRING = "spring",
+    PANDEMIC = "pandemic",
+    RE_ELECTED = "re-elected",
+    NEW_VACCINE = "new vaccine",
+    THEFT = "theft",
+    TERRORISM = "terrorism",
+    STRIKE = "strike",
+    NEW_OIL_SOURCE = "new oil source",
+    RIOT = "riot",
+}
+
 export enum RESOURCE_TYPE {
     COINS = 'coins',
     MATERIALS = 'materials',
@@ -40,11 +67,35 @@ export enum EFFECT_CATEGORY {
     TARGET = 'target',
 }
 
-export enum EFFECT_VALUE_TYPE {
+export enum LEADERSHIP {
+    PRESIDENT = "president",
+    DICTATOR = "dictator",
+}
+
+export enum EFFECT_VALUE_CHANGE {
     UPGRADE = "upgrade",
     DOWNGRADE = "downgrade",
     NO_MONEY = "no_money",
-    NO_MATERIALS = "no_materials"
+    NO_MATERIALS = "no_materials",
+    SPECIAL = "special,",
+    PROTECTION = "PROTECTION"
+}
+
+export enum EFFECT_LEVEL_DEPENDENCY {
+    INDEPENDENT = "independent",
+    APPLY_HIGHEST = "apply_highest",
+    APPLY_LOWEST = "apply_lowest",
+    DEPENDS_ON_HIGHEST = "depends_on_highest",
+    DEPENDS_ON_LOWEST = "depends_on_lowest",
+}
+
+export enum EFFECT_DURATION_IN_TURNS {
+    ONE_TURN = 1,
+    TWO_TURNS = 2,
+    THREE_TURNS = 3,
+    DEPENDS_ON_HIGHEST = "depends_on_highest",
+    DEPENDS_ON_LOWEST = "depends_on_lowest",
+    INDEFINITE = "indefinite",
 }
 
 export enum ENTITY_POPULATION_COVERAGE {

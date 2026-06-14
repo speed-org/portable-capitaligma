@@ -1,16 +1,20 @@
-import { CARD_TYPE, EFFECT_CATEGORY, EFFECT_WEIGHT, EFFECT_VALUE_TYPE, RESOURCE_TYPE } from "./constants"
+import { CARD_TYPE, EFFECT_CATEGORY, EFFECT_WEIGHT, EFFECT_VALUE_CHANGE, RESOURCE_TYPE, EFFECT_LEVEL_DEPENDENCY, LEADERSHIP, EFFECT_DURATION_IN_TURNS } from "./constants"
 
 
-export type Effect = {value_change: number | EFFECT_VALUE_TYPE, target: CARD_TYPE | RESOURCE_TYPE}
+export type Effect = {
+    leadership?: LEADERSHIP,
+    value_change: number | EFFECT_VALUE_CHANGE, 
+    level_dependency: EFFECT_LEVEL_DEPENDENCY,
+    target: CARD_TYPE | RESOURCE_TYPE | null,
+    durationInTurns: number | EFFECT_DURATION_IN_TURNS,
+}
 
-export type EffectCard = {
+export type EventCard = {
     name: string,
     description: string,
     weight: EFFECT_WEIGHT,
     category: EFFECT_CATEGORY,
-    effect: Effect[],
-    durationInTurns: number,
-    reuseTimeInTurns: number
+    leadership_dependency?: boolean,
 }
 
 export type CardName = `${string}:${string}`
@@ -25,7 +29,7 @@ export type PlayerBoard = {
     population_coverage: number
     coins: number
     materials: number
-    effects: EffectCard[]
+    effects: EventCard[]
     deficit: number
 }
 
