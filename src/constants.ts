@@ -16,7 +16,6 @@ export enum CARD_TYPE {
     MISSILE = 'missile',
 }
 
-<<<<<<< Updated upstream
 export enum EVENT_CARD_NAME {
     DROUGHT = "drought",
     FLOOD = "flood",
@@ -42,7 +41,8 @@ export enum EVENT_CARD_NAME {
     STRIKE = "strike",
     NEW_OIL_SOURCE = "new oil source",
     RIOT = "riot",
-=======
+}
+
 export enum CARD_CATEGORY {
     BASIC = "basic",
     ECONOMIC = "economic",
@@ -61,7 +61,6 @@ export const CARD_CATEGORY_TO_CARD_TYPE_MAP = {
     [CARD_CATEGORY.UTILITY]: [CARD_TYPE.ARMY, CARD_TYPE.MISSILE, CARD_TYPE.HBOMB],
     [CARD_CATEGORY.DIPLOMATIC]: [CARD_TYPE.EMBASSY],
     [CARD_CATEGORY.LEADERSHIP]: [CARD_TYPE.PRESIDENT, CARD_TYPE.DICTATOR] 
->>>>>>> Stashed changes
 }
 
 export enum RESOURCE_TYPE {
