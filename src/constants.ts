@@ -16,6 +16,7 @@ export enum CARD_TYPE {
     MISSILE = 'missile',
 }
 
+<<<<<<< Updated upstream
 export enum EVENT_CARD_NAME {
     DROUGHT = "drought",
     FLOOD = "flood",
@@ -41,6 +42,26 @@ export enum EVENT_CARD_NAME {
     STRIKE = "strike",
     NEW_OIL_SOURCE = "new oil source",
     RIOT = "riot",
+=======
+export enum CARD_CATEGORY {
+    BASIC = "basic",
+    ECONOMIC = "economic",
+    MILITARY = "military",
+    PROGRESS = "progress",
+    UTILITY = "utility",
+    DIPLOMATIC = "diplomatic",
+    LEADERSHIP = "leadership", 
+}
+
+export const CARD_CATEGORY_TO_CARD_TYPE_MAP = {
+    [CARD_CATEGORY.BASIC]: [CARD_TYPE.FARM, CARD_TYPE.MINE],
+    [CARD_CATEGORY.ECONOMIC ]: [CARD_TYPE.MARKET, CARD_TYPE.BANK],
+    [CARD_CATEGORY.MILITARY]: [CARD_TYPE.BARRACK, CARD_TYPE.AIR_FORCE],
+    [CARD_CATEGORY.PROGRESS]: [CARD_TYPE.TECH, CARD_TYPE.HOSPITAL],
+    [CARD_CATEGORY.UTILITY]: [CARD_TYPE.ARMY, CARD_TYPE.MISSILE, CARD_TYPE.HBOMB],
+    [CARD_CATEGORY.DIPLOMATIC]: [CARD_TYPE.EMBASSY],
+    [CARD_CATEGORY.LEADERSHIP]: [CARD_TYPE.PRESIDENT, CARD_TYPE.DICTATOR] 
+>>>>>>> Stashed changes
 }
 
 export enum RESOURCE_TYPE {
@@ -108,6 +129,10 @@ export enum ENTITY_POPULATION_VALUE {
     LVL1_HOUSE_POPULATION_VALUE = 1,
     LVL2_HOUSE_POPULATION_VALUE = 2,
     LVL3_HOUSE_POPULATION_VALUE = 3,
+}
+
+export enum GAME_LEVEL_ACTION_TYPE {
+    END_TURN = "END_TURN",
 }
 
 

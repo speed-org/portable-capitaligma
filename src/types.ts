@@ -26,7 +26,7 @@ export type Cards = {[key: CardName]: CardAmount;}
 export type PlayerBoard = {
     cards: Cards
     population: number
-    population_coverage: number
+    populationCoverage: number
     coins: number
     materials: number
     effects: EventCard[]
@@ -39,3 +39,6 @@ export type GameState = {
     currentTurn: boolean
     turnCount: number
 }
+
+// Which player a player-targeting action affects.
+export type PlayerKey = "player1" | "player2"

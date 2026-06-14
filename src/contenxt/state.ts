@@ -15,7 +15,7 @@ const generate_initial_board = () => {
         coins:INITIAL_COINS,
         materials: INITIAL_MATERIALS,
         population: calculate_pupulation(newCards),
-        population_coverage: calculate_population_coverage(newCards),
+        populationCoverage: calculate_population_coverage(newCards),
         effects: INITIAL_EFFECTS,
         deficit: INITIAL_DEFICIT,
     }
