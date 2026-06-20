@@ -14,7 +14,7 @@ function App() {
       gap: "20px", // Añade espacio entre cada grid
       backgroundColor: "#fafafa"
     }}>
-      <GameGrid widthInUnits={16} heightInUnits={9} width={1280} height={720} />
+      <GameGrid widthInUnits={16} heightInUnits={9} width={1280} height={720} bgPath="/assets/map/map-v1.webp" />
     </div>
   );
 }

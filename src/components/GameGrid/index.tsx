@@ -7,8 +7,9 @@ interface GameGridProps {
   heightInUnits?: number;
   width: number;
   height: number;
+  bgPath: string;
 }
-export const GameGrid = ({ widthInUnits = 10, heightInUnits = 8, width, height }: GameGridProps) => {
+export const GameGrid = ({ widthInUnits = 10, heightInUnits = 8, width, height, bgPath }: GameGridProps) => {
 
   const rows = Array(heightInUnits).fill(null);
   const cols = Array(widthInUnits).fill(null);
@@ -18,7 +19,9 @@ export const GameGrid = ({ widthInUnits = 10, heightInUnits = 8, width, height }
       width: width + "px", 
       height: height + "px", 
       border: "1px solid black",
-      boxSizing: "border-box"
+      boxSizing: "border-box",
+      backgroundImage: `url(${bgPath})`,
+      backgroundSize: "cover"
     }}>
       <table style={{
         width: "100%", 
