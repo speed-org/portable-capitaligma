@@ -139,3 +139,5 @@ export const INITIAL_COINS = 50
 export const INITIAL_MATERIALS = 0
 export const INITIAL_EFFECTS = []
 export const INITIAL_DEFICIT = 0
+export const INITIAL_POPULATION = 2
+export const INITIAL_POPULATION_COVERAGE = 2

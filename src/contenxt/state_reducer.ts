@@ -1,7 +1,7 @@
 import { GAME_LEVEL_ACTION_TYPE } from "../constants";
 import { GameState } from "../types"
 
-type ACTION =
+export type ACTION =
     | { name: GAME_LEVEL_ACTION_TYPE.END_TURN }
 
 // Pure function: (state, ACTION) => new state. Never mutates `state`.
