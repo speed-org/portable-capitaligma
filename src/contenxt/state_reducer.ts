@@ -5,7 +5,7 @@ export type ACTION =
     | { name: GAME_LEVEL_ACTION_TYPE.END_TURN }
 
 // Pure function: (state, ACTION) => new state. Never mutates `state`.
-export function reducer(state: GameState, action: ACTION): GameState {
+export function gameReducer(state: GameState, action: ACTION): GameState {
     switch (action.name) {
         case GAME_LEVEL_ACTION_TYPE.END_TURN:
             return {

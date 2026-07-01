@@ -1,3 +1,4 @@
+import { Container } from '../Container';
 import './index.css';
 
 interface GameGridProps {
@@ -13,32 +14,26 @@ export const GameGrid = ({ widthInUnits = 10, heightInUnits = 8, width, height, 
   const cols = Array(widthInUnits).fill(null);
   
   return (
-    <div style={{ 
-      width: width, 
-      height: height, 
-      border: "1px solid black",
-      boxSizing: "border-box",
-      backgroundImage: `url(${bgPath})`,
-      backgroundSize: "cover",
-      objectFit: 'contain'
-    }}>
-      <table style={{
-        width: "100%", 
-        height: "100%", 
-        tableLayout: "fixed",
-        borderCollapse: "collapse"
-      }}>
+    <Container
+      className="Component:GameGrid"
+      style={{
+        width,
+        height,
+        backgroundImage: `url(${bgPath})`,
+      }}
+    >
+      <table className='GameGrid:table'>
         <tbody>
           {rows.map((row, i) => (
             <tr key={i}>
               {cols.map((col, j) => (
-                <td className="cell" key={j} style={{ textAlign: "center", fontSize: "12px" }}>
+                <td className="cell" key={j}>
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </Container>
   );
 };
