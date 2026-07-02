@@ -134,8 +134,18 @@ export enum GAME_LEVEL_ACTION_TYPE {
     END_TURN = "END_TURN",
 }
 
+export enum StatType {
+    Coins = "Coins",
+    Materials = "Materials",
+    Population = "Population",
+    Coverage = "Coverage",
+    Deficit = "Deficit"
+}
+
 
 export const INITIAL_COINS = 50
 export const INITIAL_MATERIALS = 0
 export const INITIAL_EFFECTS = []
 export const INITIAL_DEFICIT = 0
+export const INITIAL_POPULATION = 2
+export const INITIAL_POPULATION_COVERAGE = 2

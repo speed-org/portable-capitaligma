@@ -1,0 +1,60 @@
+/* Main bar container */
+.Component\:StatsBar {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #ffc48a;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Modifier classes for top vs bottom placement */
+.Component\:StatsBar\.top {
+  border-bottom: 2px solid #5c3a21;
+}
+
+.Component\:StatsBar\.bottom {
+  border-top: 2px solid #5c3a21;
+}
+
+/* Individual Stat Box Wrapper */
+.StatsBar\:DisplayBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  min-width: 95px;
+  border-radius: 6px;
+  /* Soft warm backing to make the text pop against the dark background */
+  background-color: rgba(138, 90, 54, 0.08); 
+  border: 1px solid rgba(176, 125, 80, 0.2);
+}
+
+/* Stat Label (e.g., COINS, MATERIALS) */
+.StatsBar\:Label {
+  font-size: 0.65rem; 
+  font-weight: 700; 
+  color: #b07d50; /* Using your lighter wood color for labels */
+  text-transform: uppercase; 
+  letter-spacing: 0.5px;
+}
+
+/* Stat Counter (The actual number) */
+.StatsBar\:Counter {
+  font-size: 1.5rem; 
+  font-weight: 800; 
+  margin-top: 2px;
+  color: #ffffff;
+  
+  /* Restoring the rich text-shadow from your original button style */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0 0 4px rgba(92, 58, 33, 0.6);
+}
+
+/* Optional: Highlight critical state like a positive Deficit */
+.StatsBar\:Counter\.danger {
+  color: #ff4d4d;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0 0 4px rgba(255, 0, 0, 0.4);
+}

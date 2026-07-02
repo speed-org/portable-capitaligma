@@ -25,9 +25,11 @@ const generate_initial_board = () => {
 export const generate_initial_state = () => {
     const newGameState: GameState = {
         currentTurn: false,
-        turnCount: 0,
+        turnCount: 1,
         player1: generate_initial_board(),
         player2: generate_initial_board()
     }
     return newGameState
 }
+
+export const initialGameState = generate_initial_state()

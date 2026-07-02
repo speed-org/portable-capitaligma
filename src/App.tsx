@@ -1,21 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { GameGrid } from './components/GameGrid';
+import { Game } from './pages/Game';
 
 function App() {
+  const NotFound = () => <p>Not Found</p>;
   return (
-    <div style={{ 
-      width: "100%", 
-      height: "100vh", 
-      display: "flex", 
-      justifyContent: "center", 
-      alignItems: "center",
-      gap: "20px", // Añade espacio entre cada grid
-      backgroundColor: "#fafafa"
-    }}>
-      <GameGrid widthInUnits={16} heightInUnits={9} width={1280} height={720} bgPath="/assets/map/map-v1.webp" />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/game' element={<Game/>}></Route>
+        <Route path='/*' element={<NotFound/>}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

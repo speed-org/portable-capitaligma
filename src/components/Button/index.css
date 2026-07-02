@@ -1,0 +1,31 @@
+.Component\:Button {
+  background: radial-gradient(circle, #b07d50 0%, #8a5a36 100%);
+  border: 1.5px solid #5c3a21; /* Slightly thinner border */
+  border-radius: 4px;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  
+  /* Fixed width & height keeps them as uniform squares/rectangles */
+  width: 42px;
+  height: 32px;
+  padding: 0; /* Remove padding to force explicit height/width */
+  
+  font-size: 0.8rem; /* Smaller text */
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.15s ease;
+  
+  /* Centers the text perfectly inside the fixed box */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Component\:Button:hover {
+  background: radial-gradient(circle, #be8d5f 0%, #98653f 100%);
+}
+
+.Component\:Button:active {
+  transform: scale(0.95);
+}

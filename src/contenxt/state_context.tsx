@@ -1,7 +1,7 @@
 import { createContext, useReducer, ReactNode } from "react"
 import { GameState } from "../types"
 import { generate_initial_state } from "./state"
-import { reducer, ACTION } from "./state_reducer"
+import { gameReducer, ACTION } from "./state_reducer"
 
 // What the context carries: the current state + a way to dispatch actions.
 export type StateContextValue = {
@@ -16,7 +16,7 @@ export const StateContext = createContext<StateContextValue | null>(null)
 
 export function StateProvider({ children }: { children: ReactNode }) {
     // 3rd arg = lazy init: generate_initial_state() runs once on mount.
-    const [state, dispatch] = useReducer(reducer, undefined, generate_initial_state)
+    const [state, dispatch] = useReducer(gameReducer, undefined, generate_initial_state)
 
     return (
         <StateContext.Provider value={{ state, dispatch }}>
