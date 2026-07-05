@@ -92,13 +92,12 @@ export enum LEADERSHIP {
     DICTATOR = "dictator",
 }
 
-export enum EFFECT_VALUE_CHANGE {
+export enum ACTION {
+    INCREASE = "increase",
+    DECREASE = "decrease",
     UPGRADE = "upgrade",
     DOWNGRADE = "downgrade",
-    NO_MONEY = "no_money",
-    NO_MATERIALS = "no_materials",
-    SPECIAL = "special,",
-    PROTECTION = "PROTECTION"
+    PROTECTION = "protection",
 }
 
 export enum EFFECT_LEVEL_DEPENDENCY {
