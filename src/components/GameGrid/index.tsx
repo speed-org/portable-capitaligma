@@ -1,5 +1,7 @@
+import { Card } from '../Card-component/Card';
 import { Container } from '../Container';
 import './index.css';
+import { CARD_LEVEL, CARD_TYPE} from '../../constants';
 
 interface GameGridProps {
   widthInUnits?: number;
@@ -28,6 +30,7 @@ export const GameGrid = ({ widthInUnits = 10, heightInUnits = 8, width, height, 
             <tr key={i}>
               {cols.map((col, j) => (
                 <td className="cell" key={j}>
+                  <Card level={CARD_LEVEL.LVL_1} type={CARD_TYPE.FARM} />
                 </td>
               ))}
             </tr>
