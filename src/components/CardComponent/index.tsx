@@ -1,30 +1,13 @@
 import React from 'react';
-import { CARD_LEVEL, CARD_TYPE } from '../../constants';
+import { getCardImagePath } from '../../utils/cardHelpers';
+import { CardName } from '../../types';
 
 interface CardProps {
-    type: CARD_TYPE;
-    level: CARD_LEVEL;
+    name: CardName;
     onClick?: () => void;
 }
 
-const getImagePath = (type: CARD_TYPE, level: CARD_LEVEL): string => {
-    const formattedLevel = level.replace('_', ''); 
-
-    if (type === CARD_TYPE.FARM && level === CARD_LEVEL.LVL_1) {
-        return `/assets/entities/farm-lvl1-v1.webp`;
-    }
-    if (type === CARD_TYPE.HOUSE && level === CARD_LEVEL.LVL_1) {
-        return `/assets/entities/house-lvl1-v1.webp`;
-    }
-    if (type === CARD_TYPE.HOUSE && level === CARD_LEVEL.LVL_2) {
-        return `/assets/entities/house-lvl-2.webp`;
-    }
-
-    return `/assets/entities/${type}-${formattedLevel}.webp`;
-};
-
-export const Card: React.FC<CardProps> = ({ type, level, onClick }) => {
-    const imageSrc = getImagePath(type, level);
+export const Card: React.FC<CardProps> = ({ name, onClick }) => {
 
     return (
         <div 
@@ -44,8 +27,8 @@ export const Card: React.FC<CardProps> = ({ type, level, onClick }) => {
             onMouseLeave={(e) => onClick && (e.currentTarget.style.transform = 'scale(1)')}
         >
             <img 
-                src={imageSrc} 
-                alt={`${type} ${level}`}
+                src={getCardImagePath(name)} 
+                alt={name}
                 style={{
                     width: '100%',
                     height: '100%',
