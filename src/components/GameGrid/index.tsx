@@ -1,3 +1,4 @@
+import { Card } from '../CardComponent';
 import { Container } from '../Container';
 import './index.css';
 
@@ -28,6 +29,9 @@ export const GameGrid = ({ widthInUnits = 10, heightInUnits = 8, width, height, 
             <tr key={i}>
               {cols.map((col, j) => (
                 <td className="cell" key={j}>
+                  <Card
+                    name='house:lvl_1'
+                  />
                 </td>
               ))}
             </tr>
