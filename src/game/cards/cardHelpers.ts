@@ -1,5 +1,6 @@
 import { CARD_LEVEL, CARD_TYPE } from './cardConstants' 
 import { Card, CardName } from "../../types"
+import { gameConfig } from '../config'
 
 
 export const generateCardName = (cardType: CARD_TYPE, cardLevel: CARD_LEVEL) => {
@@ -14,8 +15,9 @@ export const parseCardName = (cardName: CardName) => {
 }
 
 export const getCardImagePath = (cardName: CardName): string => {
-    const cardImageBaseUrl = '/assets/entities/v1'
-    const path = `${cardImageBaseUrl}/${cardName}.webp`;
+    const cardImageBaseUrl = `/assets/entities/${gameConfig.gameCardIconVersion}`
+    const path = `${cardImageBaseUrl}/${cardName}.${gameConfig.gameCardIconVersion === 'v1'? 'webp': 'svg'}`;
+    console.log('icon path:', path)
     return path
 }
 
