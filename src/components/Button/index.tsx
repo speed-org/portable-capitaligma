@@ -3,16 +3,14 @@ import "./index.css"
 
 interface IButton extends React.HTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    onClick: () => void;
 }
 
-export const Button = ({children, onClick, className, style, title}: IButton) => {
+export const Button = ({children, style,...props}: IButton) => {
     return (
         <button
-            className={"Component:Button "+className}
-            onClick={() => onClick()}
-            title={title}
-            style={style}
+            style={{...style}}
+            {...props}
+            className="Component:Button"
         >{children}</button>
     )
 }

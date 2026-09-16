@@ -1,42 +1,41 @@
 import React from 'react';
-import { getCardImagePath } from '../../utils/cardHelpers';
+import { getCardImagePath } from '../../game/cards/cardHelpers';
 import { CardName } from '../../types';
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     name: CardName;
-    onClick?: () => void;
 }
 
-export const Card: React.FC<CardProps> = ({ name, onClick }) => {
-
+export const CardComponent: React.FC<CardProps> = ({ name, style, ...props }) => {
+    const [imagePath, setImagePath] = React.useState(getCardImagePath(name));
     return (
         <div 
-            onClick={onClick}
             style={{
-                display: 'inline-flex',
+                ...style,
+                display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                cursor: onClick ? 'pointer' : 'default',
                 userSelect: 'none',
-                transition: 'transform 0.2s',
                 borderRadius: '8px',
                 overflow: 'hidden',
+                boxSizing: 'border-box',
+                margin: 0,
+                padding: 0
             }}
-            onMouseEnter={(e) => onClick && (e.currentTarget.style.transform = 'scale(1.05)')}
-            onMouseLeave={(e) => onClick && (e.currentTarget.style.transform = 'scale(1)')}
+            {...props}
         >
             <img 
-                src={getCardImagePath(name)} 
+                src={imagePath} 
                 alt={name}
                 style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover'
+                    objectFit: 'cover',
+                    cursor: 'pointer'
                 }} 
                 
                 onError={(e) => {
-                    e.currentTarget.style.display = 'none';
+                    setImagePath('/assets/entities/v1/default_dard_icon.svg');
                 }}
             />
         </div>

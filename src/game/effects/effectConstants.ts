@@ -1,5 +1,5 @@
-import { EFFECT_CATEGORY, EVENT_CARD_NAME } from "../constants"
-import { EventCard } from "../types";
+import { EFFECT_CATEGORY, EVENT_CARD_NAME } from "../../constants"
+import { EventCard } from "../../types";
 
 export const EVENT_CARD_LIST: EventCard[] = [{
         name: EVENT_CARD_NAME.DROUGHT,

@@ -1,43 +1,45 @@
-import { Card } from '../CardComponent';
-import { Container } from '../Container';
+import { CardName } from '../../types';
 import './index.css';
+import { GridCell } from './GridCell';
+import { gameConfig } from '../../game/config';
 
-interface GameGridProps {
-  widthInUnits?: number;
-  heightInUnits?: number;
-  width: string;
-  height: string;
-  bgPath: string;
+interface GameGridProps extends React.HTMLAttributes<HTMLDivElement> {
+  selectedCardName: CardName | null;
+  setSelectedCardName: React.Dispatch<React.SetStateAction<CardName | null>>;
+  currentTurn: boolean
 }
-export const GameGrid = ({ widthInUnits = 10, heightInUnits = 8, width, height, bgPath }: GameGridProps) => {
 
-  const rows = Array(heightInUnits).fill(null);
-  const cols = Array(widthInUnits).fill(null);
+
+export const GameGrid = ({ selectedCardName, setSelectedCardName, currentTurn, style, ...props }: GameGridProps) => {
+
+  const rows = Array(gameConfig.gameGridHeightInUnits).fill(null);
+  const cols = Array(gameConfig.gameGridWidthInUnits).fill(null);
   
   return (
-    <Container
+    <div
       className="Component:GameGrid"
+      {...props}
       style={{
-        width,
-        height,
-        backgroundImage: `url(${bgPath})`,
+        ...style,
+        backgroundImage: `url(${gameConfig.gameBackgroundPath})`,
       }}
     >
       <table className='GameGrid:table'>
         <tbody>
-          {rows.map((row, i) => (
+          {rows.map((_, i) => (
             <tr key={i}>
-              {cols.map((col, j) => (
-                <td className="cell" key={j}>
-                  <Card
-                    name='house:lvl_1'
-                  />
-                </td>
+              {cols.map((_, j) => (
+                <GridCell
+                  coordinates={[i,j]} selectedCardName={selectedCardName}
+                  key={`GameGridCell:${i},${j}`}
+                  setSelectedCardName={setSelectedCardName}
+                  currentTurn={currentTurn}
+                ></GridCell>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
-    </Container>
+    </div>
   );
 };

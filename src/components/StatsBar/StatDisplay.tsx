@@ -15,6 +15,7 @@ export const StatDisplay = ({ title, value }: StateDisplayProps) => {
         if (title === StatType.Population) return "#4682b4";
         if (title === StatType.Coverage) return "#20b2aa";
         if (title === StatType.Deficit && value > 0) return "#ff4d4d";
+        if (title === StatType.Progress && value > 0) return "#a328a5";
         return "#ffffff";
     };
 

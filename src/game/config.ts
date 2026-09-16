@@ -1,0 +1,5 @@
+export const gameConfig = {
+    gameGridHeightInUnits: 20,
+    gameGridWidthInUnits: 30,
+    gameBackgroundPath: "/assets/map/map-v1.webp"
+}

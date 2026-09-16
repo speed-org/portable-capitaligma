@@ -3,7 +3,31 @@
   box-sizing: border-box;
   background-size: cover;
   object-fit: contain;
-  background-position: 'center'
+  background-position: 'center';
+}
+
+/* The reset has to live on `.cell`, not `.cell:hover` — otherwise the cell only
+   collapses while the mouse is over it, and resizes on every hover. */
+.cell {
+  /* Fixed row height. Without it the row is content-driven and jumps the moment
+     a card lands in it. */
+  height: var(--cell-size);
+  /* UA stylesheet gives td 1px of padding, and a line box adds ~4px of baseline
+     descender space under any inline content. */
+  padding: 0;
+  line-height: 0;
+  vertical-align: middle;
+  /* Containing block for the card below. */
+  position: relative;
+}
+
+/* Scoped to cards *inside a cell* — CardComponent is shared with the SideBar,
+   where taking it out of flow would collapse the surrounding list. Pinning the
+   card to the cell means it fills whatever the cell is sized to instead of
+   dictating that size. */
+.cell > * {
+  position: absolute;
+  inset: 0;
 }
 
 .cell:hover {
@@ -11,7 +35,11 @@
 }
 
 .GameGrid\:table {
+  --cell-size: 32px;
   width: 100%;
+  /* NOT height: 100%. On a table, `height` is a *minimum* — the table always
+     grows to fit content, so it can never clamp a row. Let the fixed cell
+     height define the total instead. */
   height: 100%;
   table-layout: fixed;
   border-collapse: collapse;
