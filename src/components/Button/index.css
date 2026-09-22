@@ -6,9 +6,9 @@
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
   
   /* Fixed width & height keeps them as uniform squares/rectangles */
-  width: 42px;
-  height: 32px;
-  padding: 0; /* Remove padding to force explicit height/width */
+  width: max-content;
+  height: max-content;
+  padding: 5px; /* Remove padding to force explicit height/width */
   
   font-size: 0.8rem; /* Smaller text */
   font-weight: 700;

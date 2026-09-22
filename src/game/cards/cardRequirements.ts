@@ -48,7 +48,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
                 inCoins: 10
             },
             depenends: {
-                onCoins: 15
+                onCoins: 15,
             }
         }
     },

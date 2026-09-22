@@ -3,6 +3,8 @@ import { CardName } from "../../types"
 import { CardComponent } from "../CardComponent"
 import { isFirstPlayerTurn } from "../../game/state/playerHelpers";
 import { gameConfig } from "../../game/config";
+import { CardDetailsPopUp } from "./CardDetailsPopUp";
+import { parseCardName } from "../../game/cards/cardHelpers";
 
 interface GridCellProps {
     selectedCardName: CardName | null;
@@ -11,8 +13,12 @@ interface GridCellProps {
     currentTurn: boolean
 }
 
+
 export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, currentTurn}: GridCellProps) => {
-    const [cellContent, setCellContent] = useState<CardName|null>(null)
+    const [cellContent, setCellContent] = useState<CardName|null>(null);
+    const [seeDetails, setSeeDetails] = useState<boolean>(false);
+
+
     const handleCellClick = () => {
         const middleCellIndex = Math.floor(gameConfig.gameGridHeightInUnits/2)
 
@@ -24,12 +30,23 @@ export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, cu
         if (selectedCardName && !cellContent) {
             setCellContent(selectedCardName)
             setSelectedCardName(null)
-        };    
+            return
+        };
+
+        if (cellContent) {
+            setSeeDetails(!seeDetails)
+        }
+
     }
     return (
         <td onClick={handleCellClick} className='cell'>
             {cellContent && 
+            <> 
                 <CardComponent name={cellContent}/>
+                { seeDetails &&
+                    <CardDetailsPopUp cardType={parseCardName(cellContent).cardType}/>
+                }
+            </>
             }
         </td>
     )

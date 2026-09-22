@@ -22,20 +22,14 @@ export type CardProfit = {
     inPopulationCoverage?: number,
 }
 
+export type LevelDetails = {
+    cost: CardCost,
+    profit: CardProfit
+    depenends?: CardDependency
+}
+
 export type CardProperties = {
-    lvl_initial: {
-        cost: CardCost,
-        profit: CardProfit
-        depenends?: CardDependency
-    },
-    lvl_2?: {
-        cost: CardCost,
-        profit: CardProfit
-        depenends?: CardDependency
-    },
-    lvl_3?: {
-        cost: CardCost,
-        profit: CardProfit
-        depenends?: CardDependency
-    }
+    lvl_initial: LevelDetails,
+    lvl_2?: LevelDetails,
+    lvl_3?: LevelDetails
 }
