@@ -6,6 +6,32 @@
   background-position: 'center';
 }
 
+.Component-CardDetailsPopUp {
+  width: max-content;
+  height: fit-content;
+  padding: 5px;
+  padding-top: 15px;
+
+  background-color: white;
+  position: absolute;
+  border: 1.5px solid black;
+  border-radius: 4px;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  bottom: 100%;
+  left: 100%;
+
+  z-index: 1;
+
+  & p {
+    margin: 0;
+    padding: 5px;
+    height: 10px;
+  }
+}
+
 /* The reset has to live on `.cell`, not `.cell:hover` — otherwise the cell only
    collapses while the mouse is over it, and resizes on every hover. */
 .cell {
@@ -19,16 +45,14 @@
   vertical-align: middle;
   /* Containing block for the card below. */
   position: relative;
+  width: fit-content;
 }
 
 /* Scoped to cards *inside a cell* — CardComponent is shared with the SideBar,
    where taking it out of flow would collapse the surrounding list. Pinning the
    card to the cell means it fills whatever the cell is sized to instead of
    dictating that size. */
-.cell > * {
-  position: absolute;
-  inset: 0;
-}
+
 
 .cell:hover {
   background-color: rgba(0, 0, 0, 0.1);

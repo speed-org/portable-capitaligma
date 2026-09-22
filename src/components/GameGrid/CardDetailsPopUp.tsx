@@ -3,14 +3,12 @@ import { CardCost, CardDependency, CardProfit, LevelDetails } from "../../game/c
 import { Container } from "../Container"
 import { CARD_PROPERTIES } from "../../game/cards/cardRequirements";
 import { Button } from "../Button";
+import "./index.css"
+import { useState } from "react";
 
 interface CardDetailsPopUpProps {
     cardType: CARD_TYPE;
-
-}
-
-
-
+};
 
 function hasKey<T extends object>(obj: T, key: PropertyKey): key is keyof T {
     return Object.prototype.hasOwnProperty.call(obj, key);
@@ -22,7 +20,7 @@ function getKeyName (key: string) {
 };
 
 
-function getSomrthing (obj: object) {
+function getSomething (obj: object) {
     let summary = ''
 
     Object.keys(obj).map((key) => {
@@ -36,21 +34,16 @@ function getSomrthing (obj: object) {
 }
 
 const evaluateCost = (levelDetails: LevelDetails) => {
-    let costSummary = getSomrthing(levelDetails.cost)
-    let profitSummary = getSomrthing(levelDetails.profit)
-    let dependencySummary = getSomrthing(levelDetails.depenends || {})
+    let costSummary = getSomething(levelDetails.cost)
+    let profitSummary = getSomething(levelDetails.profit)
+    let dependencySummary = getSomething(levelDetails.depenends || {})
     
 
     return {costSummary, profitSummary, dependencySummary}
 }
 
 
-
-
-
-
 export const CardDetailsPopUp = ({cardType}: CardDetailsPopUpProps) => {
-
     const initialLevelDetails = CARD_PROPERTIES[cardType]?.lvl_initial;
     const secondLevelDetails = CARD_PROPERTIES[cardType]?.lvl_2;
     const thirdLevelDetials = CARD_PROPERTIES[cardType]?.lvl_3;
@@ -134,9 +127,9 @@ export const CardDetailsPopUp = ({cardType}: CardDetailsPopUpProps) => {
     }
 
     return (
-        <Container style={{width: 'max-content', height: 'fit-content', border: '1px solid black', padding: '5px', backgroundColor: 'white', position: 'absolute', top:0, right: 0, zIndex:5} }>
-            <p>{cardType}</p>
-            <p></p>
+        <Container className="Component-CardDetailsPopUp">
+            
+            <p>{cardType.charAt(0).toUpperCase() + cardType.slice(1)}</p>
             {initialLevelDetails?.cost &&
                 <p>Cost: {evaluateCost(initialLevelDetails).costSummary}</p>
             }
