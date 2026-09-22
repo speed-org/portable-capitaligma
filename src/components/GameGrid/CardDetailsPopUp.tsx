@@ -3,6 +3,7 @@ import { LevelDetails } from "../../game/cards/cardTypes";
 import { Container } from "../Container"
 import { CARD_PROPERTIES } from "../../game/cards/cardRequirements";
 import { Button } from "../Button";
+import { hasKey } from "../../helpers";
 import "./index.css"
 
 interface CardDetailsPopUpProps {
