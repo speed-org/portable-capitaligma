@@ -1,5 +1,5 @@
-import { CARD_LEVEL, CARD_TYPE } from "./cardConstants";
-import { generateCardName, MULTI_LEVEL_CARD_NAME } from "./cardHelpers";
+import { CARD_TYPE } from "./cardConstants";
+import { MULTI_LEVEL_CARD_NAME } from "./cardHelpers";
 import { CardProperties } from "./cardTypes";
 
 export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
