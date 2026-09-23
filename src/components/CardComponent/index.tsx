@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getCardImagePath } from '../../game/cards/cardHelpers';
 import { CardName } from '../../types';
 
@@ -8,6 +8,11 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const CardComponent: React.FC<CardProps> = ({ name, style, ...props }) => {
     const [imagePath, setImagePath] = React.useState(getCardImagePath(name));
+
+    useEffect(() => {
+        setImagePath(getCardImagePath(name))
+    }, [name])
+
     return (
         <div 
             style={{

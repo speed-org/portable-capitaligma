@@ -40,9 +40,14 @@ export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, cu
 
     }
 
-    function upgradeCellContent(cellContent: CardName) {
+    function extractLevel(cellContent: CardName) {
         const {cardLevel} = parseCardName(cellContent)
         let level = cardLevel.at(-1)
+        return level
+    }
+
+    function upgradeCellContent(cellContent: CardName) {
+        const level = extractLevel(cellContent)
         if (!level) return;
 
         const newLevel = (Number(level) + 1).toString()
@@ -52,7 +57,7 @@ export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, cu
     }
 
     return (
-        <td onClick={handleCellClick} className='cell'>
+        <td onClick={handleCellClick} className='cell' colSpan={cellContent? Number(extractLevel(cellContent)) : 1} rowSpan={1}>
             {cellContent && 
             <> 
                 <CardComponent name={cellContent}/>
