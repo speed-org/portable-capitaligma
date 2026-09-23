@@ -4,11 +4,14 @@ import { Container } from "../Container"
 import { CARD_PROPERTIES } from "../../game/cards/cardRequirements";
 import { Button } from "../Button";
 import { hasKey } from "../../helpers";
-import { generateCardName, UNIQUE_LEVEL_CARD_NAME } from "../../game/cards/cardHelpers";
+import { generateCardName, UNIQUE_LEVEL_CARD_NAME, getHighestLevelCardNameByCardType } from "../../game/cards/cardHelpers";
 import "./index.css"
+import { CardName } from "../../types";
 
 interface CardDetailsPopUpProps {
     cardType: CARD_TYPE;
+    currentCellContent: CardName;
+    upgradeLevel: (cardName: CardName) => void;
 };
 
 function getKeyName (key: string) {
@@ -40,22 +43,21 @@ const evaluateCost = (levelDetails: LevelDetails) => {
 }
 
 function isCardTypeUnique(cardType:CARD_TYPE) {
-
     const cardName = generateCardName(cardType, CARD_LEVEL.UNIQUE)
     return Object.values(UNIQUE_LEVEL_CARD_NAME).includes(cardName)
 }
 
+function isMaxLevelCardName(cardType:CARD_TYPE, currentCellContent:CardName) {
+    if (currentCellContent === getHighestLevelCardNameByCardType(cardType)) {
+        return true
+    }
+    return false
+}
 
-
-export const CardDetailsPopUp = ({cardType}: CardDetailsPopUpProps) => {
+export const CardDetailsPopUp = ({cardType, currentCellContent, upgradeLevel}: CardDetailsPopUpProps) => {
     const initialLevelDetails = CARD_PROPERTIES[cardType]?.lvl_initial;
     const secondLevelDetails = CARD_PROPERTIES[cardType]?.lvl_2;
     const thirdLevelDetials = CARD_PROPERTIES[cardType]?.lvl_3;
-
-
-    function upgradeButton() {
-        alert('Button Clicked!');
-    }
 
     return (
         <Container className="Component-CardDetailsPopUp">
@@ -72,8 +74,8 @@ export const CardDetailsPopUp = ({cardType}: CardDetailsPopUpProps) => {
             }
             <div style={{display: 'flex', gap: '10px', padding:'10px'}}>  
 
-                {!isCardTypeUnique(cardType) &&
-                    <Button onClick={upgradeButton}>
+                {!isCardTypeUnique(cardType) && !isMaxLevelCardName(cardType, currentCellContent) &&
+                    <Button onClick={() => upgradeLevel(currentCellContent)}>
                     Upgrade?
                     </Button>
                 }

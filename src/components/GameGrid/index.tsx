@@ -2,7 +2,6 @@ import { CardName } from '../../types';
 import './index.css';
 import { GridCell } from './GridCell';
 import { gameConfig } from '../../game/config';
-import { CARD_LEVELS } from '../../game/cards/cardHelpers';
 
 interface GameGridProps extends React.HTMLAttributes<HTMLDivElement> {
   selectedCardName: CardName | null;

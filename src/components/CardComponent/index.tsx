@@ -17,7 +17,6 @@ export const CardComponent: React.FC<CardProps> = ({ name, style, ...props }) =>
                 alignItems: 'center',
                 userSelect: 'none',
                 borderRadius: '8px',
-                overflow: 'hidden',
                 boxSizing: 'border-box',
                 margin: 0,
                 padding: 0
