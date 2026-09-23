@@ -5,6 +5,7 @@ import { isFirstPlayerTurn } from "../../game/state/playerHelpers";
 import { gameConfig } from "../../game/config";
 import { CardDetailsPopUp } from "./CardDetailsPopUp";
 import { parseCardName } from "../../game/cards/cardHelpers";
+import { CARD_LEVEL } from "../../game/cards/cardConstants";
 
 interface GridCellProps {
     selectedCardName: CardName | null;
@@ -38,6 +39,13 @@ export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, cu
         }
 
     }
+
+    function upgradeCellContent(cellContent: CardName) {
+        const {cardLevel} = parseCardName(cellContent)
+
+        
+    }
+
     return (
         <td onClick={handleCellClick} className='cell'>
             {cellContent && 

@@ -53,6 +53,12 @@ export const getAllCardNames = (playerCards: Card[]) => {
     return cardNames
 }
 
+export const CARD_LEVELS = [
+    CARD_LEVEL.LVL_1,
+    CARD_LEVEL.LVL_2,
+    CARD_LEVEL.LVL_3
+]
+
 
 export const UNIQUE_LEVEL_CARD_NAME = {
     MISSILE: generateCardName(CARD_TYPE.MISSILE, CARD_LEVEL.UNIQUE),
