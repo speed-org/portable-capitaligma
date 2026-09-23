@@ -16,7 +16,7 @@ export const parseCardName = (cardName: CardName) => {
 
 export const getCardImagePath = (cardName: CardName): string => {
     const cardImageBaseUrl = `/assets/entities/${gameConfig.gameCardIconVersion}`
-    const path = `${cardImageBaseUrl}/${cardName}.${gameConfig.gameCardIconVersion === 'v1'? 'webp': 'svg'}`;
+    const path = `${cardImageBaseUrl}/${cardName.replace(":",'-')}.${gameConfig.gameCardIconVersion === 'v1'? 'webp': 'svg'}`;
     console.log('icon path:', path)
     return path
 }
