@@ -1,12 +1,12 @@
-import { CARD_LEVEL, CARD_TYPE } from "../../game/cards/cardConstants";
+import { CARD_TYPE } from "../../game/cards/cardConstants";
 import { LevelDetails } from "../../game/cards/cardTypes";
 import { Container } from "../Container"
 import { CARD_PROPERTIES } from "../../game/cards/cardRequirements";
 import { Button } from "../Button";
 import { hasKey } from "../../helpers";
-import { generateCardName, UNIQUE_LEVEL_CARD_NAME, getHighestLevelCardNameByCardType } from "../../game/cards/cardHelpers";
 import "./index.css"
 import { CardName } from "../../types";
+import { isCardTypeUnique, isMaxLevelCardName } from "../../game/cards/cardHelpers";
 
 interface CardDetailsPopUpProps {
     cardType: CARD_TYPE;
@@ -18,7 +18,6 @@ function getKeyName (key: string) {
     key.toLowerCase()
     return key.slice(2)
 };
-
 
 function generateKeyDetailsSummary (obj: object) {
     let summary = ''
@@ -40,18 +39,6 @@ const evaluateCost = (levelDetails: LevelDetails) => {
     
 
     return {costSummary, profitSummary, dependencySummary}
-}
-
-function isCardTypeUnique(cardType:CARD_TYPE) {
-    const cardName = generateCardName(cardType, CARD_LEVEL.UNIQUE)
-    return Object.values(UNIQUE_LEVEL_CARD_NAME).includes(cardName)
-}
-
-function isMaxLevelCardName(cardType:CARD_TYPE, currentCellContent:CardName) {
-    if (currentCellContent === getHighestLevelCardNameByCardType(cardType)) {
-        return true
-    }
-    return false
 }
 
 export const CardDetailsPopUp = ({cardType, currentCellContent, upgradeLevel}: CardDetailsPopUpProps) => {

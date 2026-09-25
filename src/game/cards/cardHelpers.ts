@@ -53,6 +53,33 @@ export const getAllCardNames = (playerCards: Card[]) => {
     return cardNames
 }
 
+export function getCardNameLevel(cellContent: CardName) {
+    const {cardLevel} = parseCardName(cellContent)
+    let level = Number(cardLevel.at(-1))
+    return level
+}
+
+export function getNextLevelCardName(cellContent: CardName) {
+    const level = getCardNameLevel(cellContent)
+    if (!level) return null;
+
+    const newLevel = (Number(level) + 1).toString()
+
+    const newCardName = cellContent.replace(level, newLevel) as CardName
+    return newCardName
+}
+
+export function isCardTypeUnique(cardType:CARD_TYPE) {
+    const cardName = generateCardName(cardType, CARD_LEVEL.UNIQUE)
+    return Object.values(UNIQUE_LEVEL_CARD_NAME).includes(cardName)
+}
+
+export function isMaxLevelCardName(cardType:CARD_TYPE, currentCellContent:CardName) {
+    if (currentCellContent === getHighestLevelCardNameByCardType(cardType)) {
+        return true
+    }
+    return false
+}
 
 export const UNIQUE_LEVEL_CARD_NAME = {
     MISSILE: generateCardName(CARD_TYPE.MISSILE, CARD_LEVEL.UNIQUE),
