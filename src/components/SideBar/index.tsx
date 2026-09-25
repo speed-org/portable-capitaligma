@@ -51,7 +51,7 @@ export const SideBar = ({ setSelectedCardName, selectedCardName, currentPlayerBo
                                 <CardComponent
                                     name={getLowestLevelCardNameByCardType(cardType)}
                                     onClick={() => handleCardClick(cardType)}
-                                    style={{...handleStyle(cardType), width: '2rem', height: '2rem'}}
+                                    style={{...handleStyle(cardType), width: '4rem', height: '4rem'}}
                                 />
                                 <span>{cardType}</span>
                             </li>
