@@ -5,16 +5,19 @@ import { CARD_PROPERTIES } from "../../game/cards/cardRequirements";
 import { Button } from "../Button";
 import { hasKey } from "../../helpers";
 import "./index.css"
+import { CardName } from "../../types";
+import { isCardTypeUnique, isMaxLevelCardName } from "../../game/cards/cardHelpers";
 
 interface CardDetailsPopUpProps {
     cardType: CARD_TYPE;
+    currentCellContent: CardName;
+    upgradeLevel: (cardName: CardName) => void;
 };
 
 function getKeyName (key: string) {
     key.toLowerCase()
     return key.slice(2)
 };
-
 
 function generateKeyDetailsSummary (obj: object) {
     let summary = ''
@@ -38,15 +41,10 @@ const evaluateCost = (levelDetails: LevelDetails) => {
     return {costSummary, profitSummary, dependencySummary}
 }
 
-export const CardDetailsPopUp = ({cardType}: CardDetailsPopUpProps) => {
+export const CardDetailsPopUp = ({cardType, currentCellContent, upgradeLevel}: CardDetailsPopUpProps) => {
     const initialLevelDetails = CARD_PROPERTIES[cardType]?.lvl_initial;
     const secondLevelDetails = CARD_PROPERTIES[cardType]?.lvl_2;
     const thirdLevelDetials = CARD_PROPERTIES[cardType]?.lvl_3;
-
-
-    function upgradeButton() {
-        alert('Button Clicked!');
-    }
 
     return (
         <Container className="Component-CardDetailsPopUp">
@@ -62,9 +60,12 @@ export const CardDetailsPopUp = ({cardType}: CardDetailsPopUpProps) => {
                 <p> Profit: {evaluateCost(initialLevelDetails).profitSummary}</p>
             }
             <div style={{display: 'flex', gap: '10px', padding:'10px'}}>  
-                <Button onClick={upgradeButton}>
+
+                {!isCardTypeUnique(cardType) && !isMaxLevelCardName(cardType, currentCellContent) &&
+                    <Button onClick={() => upgradeLevel(currentCellContent)}>
                     Upgrade?
-                </Button>
+                    </Button>
+                }
             </div>
         </Container>
     )

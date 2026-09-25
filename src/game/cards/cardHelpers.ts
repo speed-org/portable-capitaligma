@@ -3,7 +3,7 @@ import { Card, CardName } from "../../types"
 import { gameConfig } from '../config'
 
 
-export const generateCardName = (cardType: CARD_TYPE, cardLevel: CARD_LEVEL) => {
+export const generateCardName = (cardType: CARD_TYPE, cardLevel: CARD_LEVEL): string => {
     const newCardName = `${cardType}:${cardLevel}`
     return newCardName as CardName
 }
@@ -14,7 +14,7 @@ export const parseCardName = (cardName: CardName) => {
     return { cardType, cardLevel }
 }
 
-export const getCardImagePath = (cardName: CardName): string => {
+export const getCardImagePath = (cardName: CardName) => {
     const cardImageBaseUrl = `/assets/entities/${gameConfig.gameCardIconVersion}`
     const path = `${cardImageBaseUrl}/${cardName.replace(":",'-')}.${gameConfig.gameCardIconVersion === 'v1'? 'webp': 'svg'}`;
     console.log('icon path:', path)
@@ -53,6 +53,33 @@ export const getAllCardNames = (playerCards: Card[]) => {
     return cardNames
 }
 
+export function getCardNameLevel(cellContent: CardName): number {
+    const {cardLevel} = parseCardName(cellContent)
+    let level = Number(cardLevel.at(-1))
+    return level
+}
+
+export function getNextLevelCardName(cellContent: CardName): CardName | null {
+    const level = getCardNameLevel(cellContent)
+    if (!level) return null;
+
+    const newLevel = (Number(level) + 1).toString()
+
+    const newCardName = cellContent.replace(level.toString(), newLevel) as CardName
+    return newCardName
+}
+
+export function isCardTypeUnique(cardType:CARD_TYPE): boolean {
+    const cardName = generateCardName(cardType, CARD_LEVEL.UNIQUE)
+    return Object.values(UNIQUE_LEVEL_CARD_NAME).includes(cardName)
+}
+
+export function isMaxLevelCardName(cardType:CARD_TYPE, currentCellContent:CardName): boolean {
+    if (currentCellContent === getHighestLevelCardNameByCardType(cardType)) {
+        return true
+    }
+    return false
+}
 
 export const UNIQUE_LEVEL_CARD_NAME = {
     MISSILE: generateCardName(CARD_TYPE.MISSILE, CARD_LEVEL.UNIQUE),

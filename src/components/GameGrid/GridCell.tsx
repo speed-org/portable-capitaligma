@@ -4,7 +4,7 @@ import { CardComponent } from "../CardComponent"
 import { isFirstPlayerTurn } from "../../game/state/playerHelpers";
 import { gameConfig } from "../../game/config";
 import { CardDetailsPopUp } from "./CardDetailsPopUp";
-import { parseCardName } from "../../game/cards/cardHelpers";
+import { parseCardName, getCardNameLevel, getNextLevelCardName } from "../../game/cards/cardHelpers";
 
 interface GridCellProps {
     selectedCardName: CardName | null;
@@ -38,13 +38,20 @@ export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, cu
         }
 
     }
+
+    function upgradeCellContent(cellContent: CardName) {
+        const newCardName = getNextLevelCardName(cellContent)
+        
+        newCardName && setCellContent(newCardName);
+    }
+
     return (
-        <td onClick={handleCellClick} className='cell'>
+        <td onClick={handleCellClick} className='cell' colSpan={cellContent? getCardNameLevel(cellContent) : 1} rowSpan={1}>
             {cellContent && 
             <> 
                 <CardComponent name={cellContent}/>
                 { seeDetails &&
-                    <CardDetailsPopUp cardType={parseCardName(cellContent).cardType}/>
+                    <CardDetailsPopUp cardType={parseCardName(cellContent).cardType} currentCellContent={cellContent} upgradeLevel={upgradeCellContent} />
                 }
             </>
             }
