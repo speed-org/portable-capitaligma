@@ -32,7 +32,7 @@ export const Game = () => {
                     selectedCardName={selectedCardName}
                 />
             </Container>
-            <Container style={{width: '80%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}}>
+            <Container style={{width: '80%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                 <StatsBar
                 coins={player1Stats.coins}
                 materials={player1Stats.materials}
@@ -44,14 +44,25 @@ export const Game = () => {
                 isTop={true}
                 isCurrentTurn={isFirstPlayerTurn(state.currentTurn)}
                 />
-                <Container style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-                    <GameGrid
-                        style={{height:"100%", width:"60%"}}
-                        selectedCardName={selectedCardName}
-                        setSelectedCardName={setSelectedCardName}
-                        currentTurn={state.currentTurn}
-                    />
-                    <Button onClick={gameManager.handleEndTurn}>Finish Turn</Button>
+                <Container style={{
+                    display:"flex",
+                    flexDirection:"column",
+                    flexGrow: 1,
+                    justifyContent:"space-between",
+                    alignItems:"center",
+                    overflow: "hidden",
+                }}>
+                    <Container style={{
+                        display:"flex",
+                        flexDirection:"row",}}>
+                        <GameGrid
+                            style={{height:"100%", width:"90%", paddingRight:"10px"}}
+                            selectedCardName={selectedCardName}
+                            setSelectedCardName={setSelectedCardName}
+                            currentTurn={state.currentTurn}
+                        />
+                        <Button onClick={gameManager.handleEndTurn}>Finish Turn</Button>
+                    </Container>
                 </Container>
                 <StatsBar
                 coins={player2Stats.coins}
