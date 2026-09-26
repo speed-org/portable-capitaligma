@@ -7,14 +7,36 @@ export enum CARD_TYPE {
     BARRACK = 'barrack',
     TECH = 'tech',
     ARMY = 'army',
-    PRESIDENT = 'president',
-    DICTATOR = 'dictator',
+    PRESIDENT = 'president', 
+    DICTATOR = 'dictator', 
     HOSPITAL = 'hospital',
-    EMBASSY = 'embassy',
+    EMBASSY = 'embassy', 
     AIR_FORCE = 'air_force',
-    HBOMB = 'hbomb',
-    MISSILE = 'missile',
+    HBOMB = 'hbomb', 
+    MISSILE = 'missile', 
 }
+
+export enum MULTI_LEVEL_TYPE  {
+    FARM = CARD_TYPE.FARM,
+    MINE = CARD_TYPE.MINE,
+    MARKET = CARD_TYPE.MARKET,
+    BANK = CARD_TYPE.BANK,
+    BARRACK = CARD_TYPE.BARRACK,
+    AIR_FORCE = CARD_TYPE.AIR_FORCE,
+    TECH = CARD_TYPE.TECH,
+    HOSPITAL = CARD_TYPE.HOSPITAL,
+    HOUSE = CARD_TYPE.HOUSE,
+    ARMY = CARD_TYPE.ARMY,
+}
+
+export enum UNIQUE_LEVEL_TYPE {
+    MISSILE = CARD_TYPE.MISSILE,
+    HBOMB = CARD_TYPE.HBOMB,
+    EMBASSY = CARD_TYPE.EMBASSY,
+    PRESIDENT = CARD_TYPE.PRESIDENT,
+    DICTATOR = CARD_TYPE.DICTATOR,
+}
+
 
 export enum CARD_CATEGORY {
     BASIC = "basic",
