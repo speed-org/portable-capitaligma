@@ -17,14 +17,13 @@ export const CardComponent: React.FC<CardProps> = ({ name, style, ...props }) =>
         <div 
             style={{
                 ...style,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
                 userSelect: 'none',
                 borderRadius: '8px',
                 boxSizing: 'border-box',
                 margin: 0,
-                padding: 0
+                padding: 0,
+                position: "relative",
+                height: "100%"
             }}
             {...props}
         >
@@ -34,8 +33,11 @@ export const CardComponent: React.FC<CardProps> = ({ name, style, ...props }) =>
                 style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    position: "absolute",
+                    top:0,
+                    zIndex:5,
+                    objectFit: 'cover'
                 }} 
                 
                 onError={(e) => {
