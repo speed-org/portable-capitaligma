@@ -1,9 +1,6 @@
 .Component\:GameGrid {
   border: 1px solid black;
   box-sizing: border-box;
-  background-size: cover;
-  object-fit: contain;
-  background-position: 'center';
 }
 
 .Component-CardDetailsPopUp {

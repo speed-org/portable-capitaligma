@@ -14,16 +14,17 @@ export const GameGrid = ({ selectedCardName, setSelectedCardName, currentTurn, s
 
   const rows = Array(gameConfig.gameGridHeightInUnits).fill(null);
   const cols = Array(gameConfig.gameGridWidthInUnits).fill(null);
-  
+
   return (
     <div
       className="Component:GameGrid"
       {...props}
       style={{
         ...style,
-        backgroundImage: `url(${gameConfig.gameBackgroundPath})`,
+        position: "relative",
       }}
     >
+      <img src={gameConfig.gameBackgroundPath} alt="xd" style={{height: "100%", width: "100%", position: "absolute", top:0}} onError={() => "Error!!!"}/>
       <table className='GameGrid:table'>
         <tbody>
           {rows.map((_, i) => (

@@ -45,13 +45,15 @@ export const SideBar = ({ setSelectedCardName, selectedCardName, currentPlayerBo
                                     flexDirection: 'column',
                                     alignItems: 'center',
                                     cursor: 'pointer',
-                                    backgroundColor: !isPossibleToBuildCard(currentPlayerBoard, cardType)? 'rgba(0,0,0,0.5)' : ''
+                                    backgroundColor: !isPossibleToBuildCard(currentPlayerBoard, cardType)? 'rgba(0,0,0,0.5)' : '',
+                                    width: "4rem",
+                                    height: "5rem"
                                 }}
                             >
                                 <CardComponent
                                     name={getLowestLevelCardNameByCardType(cardType)}
                                     onClick={() => handleCardClick(cardType)}
-                                    style={{...handleStyle(cardType), width: '2rem', height: '2rem'}}
+                                    style={{...handleStyle(cardType), width: '4rem', height: '4rem'}}
                                 />
                                 <span>{cardType}</span>
                             </li>

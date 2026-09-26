@@ -3,7 +3,7 @@ import { Card, CardName } from "../../types"
 import { gameConfig } from '../config'
 
 
-export const generateCardName = (cardType: CARD_TYPE, cardLevel: CARD_LEVEL): string => {
+export const generateCardName = (cardType: CARD_TYPE, cardLevel: CARD_LEVEL) => {
     const newCardName = `${cardType}:${cardLevel}`
     return newCardName as CardName
 }
@@ -17,7 +17,6 @@ export const parseCardName = (cardName: CardName) => {
 export const getCardImagePath = (cardName: CardName) => {
     const cardImageBaseUrl = `/assets/entities/${gameConfig.gameCardIconVersion}`
     const path = `${cardImageBaseUrl}/${cardName.replace(":",'-')}.${gameConfig.gameCardIconVersion === 'v1'? 'webp': 'svg'}`;
-    console.log('icon path:', path)
     return path
 }
 

@@ -33,8 +33,7 @@ export const Game = () => {
                 />
             </Container>
             <Container style={{width: '80%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-                <StatsBar
-                coins={player1Stats.coins}
+                <StatsBar coins={player1Stats.coins}
                 materials={player1Stats.materials}
                 progress={player1Stats.progress}
 
@@ -51,21 +50,25 @@ export const Game = () => {
                     justifyContent:"space-between",
                     alignItems:"center",
                     overflow: "hidden",
+                    boxSizing: "border-box"
                 }}>
                     <Container style={{
                         display:"flex",
-                        flexDirection:"row",}}>
+                        flexDirection:"row",
+                        justifyContent: "space-between",
+                        height: "100%",
+                    }}>
                         <GameGrid
-                            style={{height:"100%", width:"90%", paddingRight:"10px"}}
                             selectedCardName={selectedCardName}
                             setSelectedCardName={setSelectedCardName}
                             currentTurn={state.currentTurn}
                         />
-                        <Button onClick={gameManager.handleEndTurn}>Finish Turn</Button>
+                        <Container style={{ height: "100%", boxSizing: "border-box", display: "flex", alignItems: "center"}}>
+                            <Button onClick={gameManager.handleEndTurn}>Finish Turn</Button>
+                        </Container>
                     </Container>
                 </Container>
-                <StatsBar
-                coins={player2Stats.coins}
+                <StatsBar coins={player2Stats.coins}
                 materials={player2Stats.materials}
                 progress={player2Stats.progress}
                 population={player2Stats.population}
