@@ -45,7 +45,9 @@ export const SideBar = ({ setSelectedCardName, selectedCardName, currentPlayerBo
                                     flexDirection: 'column',
                                     alignItems: 'center',
                                     cursor: 'pointer',
-                                    backgroundColor: !isPossibleToBuildCard(currentPlayerBoard, cardType)? 'rgba(0,0,0,0.5)' : ''
+                                    backgroundColor: !isPossibleToBuildCard(currentPlayerBoard, cardType)? 'rgba(0,0,0,0.5)' : '',
+                                    width: "4rem",
+                                    height: "5rem"
                                 }}
                             >
                                 <CardComponent
