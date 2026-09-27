@@ -1,8 +1,9 @@
 import { CARD_LEVEL, CARD_TYPE } from "../../game/cards/cardConstants";
-import { Card, GameState, PlayerBoard, PlayerStats } from "../../types";
+import { Card, GAME_LEVEL_ACTION, GameState, PlayerBoard, PlayerStats } from "../../types";
 import { generateCardName } from "../cards/cardHelpers";
-import { ENTITY_POPULATION_COVERAGE, ENTITY_POPULATION_VALUE } from "../../constants";
+import { ENTITY_POPULATION_COVERAGE, ENTITY_POPULATION_VALUE, GAME_LEVEL_ACTION_TYPE } from "../../constants";
 import { INITIAL_COINS, INITIAL_MATERIALS, INITIAL_EFFECTS, INITIAL_DEFICIT } from "../../constants";
+import { PLAYER_LEVEL_ACTION } from "./stateTypes";
 
 const generate_initial_board = () => {
     const newCards: Card[] = [
@@ -36,7 +37,6 @@ export const generate_initial_state = () => {
     }
     return newGameState
 }
-
 
 export const calculate_population_coverage = (cards: Card[]) => {
     let coverage = 0
@@ -73,3 +73,8 @@ export const calculate_pupulation = (cards:Card[]) => {
 }
 
 export const initialGameState = generate_initial_state()
+
+export function isGameLevelAction(action: GAME_LEVEL_ACTION | PLAYER_LEVEL_ACTION): action is GAME_LEVEL_ACTION {
+    return Object.values(GAME_LEVEL_ACTION_TYPE).includes(action.type as GAME_LEVEL_ACTION_TYPE) 
+}
+

@@ -1,6 +1,7 @@
 import { CARD_LEVEL, CARD_TYPE } from './cardConstants' 
 import { Card, CardName } from "../../types"
 import { gameConfig } from '../config'
+import { CARD_PROPERTIES } from './cardRequirements'
 
 
 export const generateCardName = (cardType: CARD_TYPE, cardLevel: CARD_LEVEL) => {
@@ -78,6 +79,18 @@ export function isMaxLevelCardName(cardType:CARD_TYPE, currentCellContent:CardNa
         return true
     }
     return false
+}
+
+export function getCardNameCost(cardName: CardName) {
+    const { cardType, cardLevel } = parseCardName(cardName)
+    const cardProperties = CARD_PROPERTIES[cardType]
+
+    if (!cardProperties) return; 
+
+    if (cardLevel === CARD_LEVEL.UNIQUE || cardLevel === CARD_LEVEL.LVL_1) {
+        const levelProperties = cardProperties.lvl_initial
+        return levelProperties.cost
+    }
 }
 
 export const UNIQUE_LEVEL_CARD_NAME = {

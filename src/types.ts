@@ -1,5 +1,5 @@
-import { EFFECT_CATEGORY, EFFECT_WEIGHT, RESOURCE_TYPE, EFFECT_LEVEL_DEPENDENCY, LEADERSHIP, EFFECT_DURATION_IN_TURNS, EVENT_CARD_NAME, ACTION, GAME_LEVEL_ACTION_TYPE, PLAYER_LEVEL_ACTION_TYPE } from "./constants"
-import { CARD_LEVEL, MULTI_LEVEL_TYPE, CARD_TYPE, UNIQUE_LEVEL_TYPE } from "./game/cards/cardConstants"
+import { EFFECT_CATEGORY, EFFECT_WEIGHT, RESOURCE_TYPE, EFFECT_LEVEL_DEPENDENCY, LEADERSHIP, EFFECT_DURATION_IN_TURNS, EVENT_CARD_NAME, ACTION, GAME_LEVEL_ACTION_TYPE } from "./constants"
+import { CARD_LEVEL, CARD_TYPE, MULTI_LEVEL_TYPE, UNIQUE_LEVEL_TYPE } from "./game/cards/cardConstants"
 
 export type Effect = PassiveEffect | ImmediateEffect
 
@@ -7,16 +7,9 @@ export type ValueChange = `${number}` | `${number}%`
 
 export type Action = {type: string, payload: any}
 
-export type GAME_LEVEL_ACTION = {type:GAME_LEVEL_ACTION_TYPE.END_TURN} |
+export type GAME_LEVEL_ACTION = 
+    {type:GAME_LEVEL_ACTION_TYPE.END_TURN} |
     {type:GAME_LEVEL_ACTION_TYPE.END_GAME, payload: {}}
-
-export type PLAYER_LEVEL_ACTION = {type: "collect_resources", payload: {}} |
-    {type: PLAYER_LEVEL_ACTION_TYPE.BUILD_CARD, payload: {}} |
-    {type: PLAYER_LEVEL_ACTION_TYPE.DESTROY_CARD, payload: {}} |
-    {type: PLAYER_LEVEL_ACTION_TYPE.UPGRADE_CARD, payload: {}} |
-    {type: PLAYER_LEVEL_ACTION_TYPE.DOWNGRADE_CARD, payload: {}} |
-    {type: PLAYER_LEVEL_ACTION_TYPE.APPLY_EFFECT, payload: {}} |
-    {type: PLAYER_LEVEL_ACTION_TYPE.REMOVE_EFFECT, payload: {}}
 
 
 export type ImmediateEffect = {
