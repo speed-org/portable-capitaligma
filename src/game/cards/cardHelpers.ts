@@ -81,7 +81,7 @@ export function isMaxLevelCardName(cardType:CARD_TYPE, currentCellContent:CardNa
     return false
 }
 
-export function getCardNameCost(cardName: CardName) {
+export function getCardCostByCardName(cardName: CardName) {
     const { cardType, cardLevel } = parseCardName(cardName)
     const cardProperties = CARD_PROPERTIES[cardType]
 

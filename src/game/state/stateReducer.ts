@@ -1,7 +1,7 @@
 import { GAME_LEVEL_ACTION_TYPE, PLAYER_LEVEL_ACTION_TYPE } from "../../constants"
 import { GAME_LEVEL_ACTION, GameState } from "../../types"
 import { PLAYER_LEVEL_ACTION } from "./stateTypes"
-import { getCardNameCost } from "../cards/cardHelpers"
+import { getCardCostByCardName } from "../cards/cardHelpers"
 import { isFirstPlayerTurn } from "./playerHelpers"
 import { isGameLevelAction } from "./stateHelpers"
 
@@ -36,7 +36,7 @@ export function playerReducer(state: GameState, action: PLAYER_LEVEL_ACTION): Ga
             
             const currentPlayerBoard = isFirstPlayerTurn(state.currentTurn)? state.player1 : state.player2
             const builtCard = action.payload.cardName  
-            const cardCost = getCardNameCost(builtCard)
+            const cardCost = getCardCostByCardName(builtCard)
             const newPlayerBoard = {... currentPlayerBoard}
             
             if (cardCost?.inCoins) {
