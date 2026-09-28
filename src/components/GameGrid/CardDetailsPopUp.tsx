@@ -1,15 +1,14 @@
-import { CARD_TYPE } from "../../game/cards/cardConstants";
-import { LevelDetails } from "../../game/cards/cardTypes";
+import { CardType, LevelDetails } from "../../game/cards/cardTypes";
 import { Container } from "../Container"
 import { CARD_PROPERTIES } from "../../game/cards/cardRequirements";
 import { Button } from "../Button";
 import { hasKey } from "../../helpers";
 import "./index.css"
 import { CardName } from "../../types";
-import { isCardTypeUnique, isMaxLevelCardName } from "../../game/cards/cardHelpers";
+import { isUniqueCardType, isMaxLevelCardName } from "../../game/cards/cardHelpers";
 
 interface CardDetailsPopUpProps {
-    cardType: CARD_TYPE;
+    cardType: CardType;
     currentCellContent: CardName;
     upgradeLevel: (cardName: CardName) => void;
 };
@@ -61,7 +60,7 @@ export const CardDetailsPopUp = ({cardType, currentCellContent, upgradeLevel}: C
             }
             <div style={{display: 'flex', gap: '10px', padding:'10px'}}>  
 
-                {!isCardTypeUnique(cardType) && !isMaxLevelCardName(cardType, currentCellContent) &&
+                {!isUniqueCardType(cardType) && !isMaxLevelCardName(currentCellContent) &&
                     <Button onClick={() => upgradeLevel(currentCellContent)}>
                     Upgrade?
                     </Button>

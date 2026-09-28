@@ -1,4 +1,7 @@
 import { CardName } from "../../types"
+import { MULTI_LEVEL_CARD_TYPE, UNIQUE_LEVEL_CARD_TYPE } from "./cardConstants"
+
+export type CardType = MULTI_LEVEL_CARD_TYPE | UNIQUE_LEVEL_CARD_TYPE
 
 export type CardCost = {
     inCoins?: number,

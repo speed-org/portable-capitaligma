@@ -1,4 +1,4 @@
-import { CARD_LEVEL, CARD_TYPE } from "../../game/cards/cardConstants";
+import { CARD_LEVEL, MULTI_LEVEL_CARD_TYPE, UNIQUE_LEVEL_CARD_TYPE } from "../../game/cards/cardConstants";
 import { Card, GAME_LEVEL_ACTION, GameState, PlayerBoard, PlayerStats } from "../../types";
 import { generateCardName } from "../cards/cardHelpers";
 import { ENTITY_POPULATION_COVERAGE, ENTITY_POPULATION_VALUE, GAME_LEVEL_ACTION_TYPE } from "../../constants";
@@ -7,10 +7,10 @@ import { PLAYER_LEVEL_ACTION } from "./stateTypes";
 
 const generate_initial_board = () => {
     const newCards: Card[] = [
-        { name: generateCardName(CARD_TYPE.PRESIDENT, CARD_LEVEL.UNIQUE), type: CARD_TYPE.PRESIDENT, level: CARD_LEVEL.UNIQUE, isControlled: false, xCoord: 0, yCoord: 0 },
-        { name: generateCardName(CARD_TYPE.FARM, CARD_LEVEL.LVL_1), type: CARD_TYPE.FARM, level: CARD_LEVEL.LVL_1, isControlled: false, xCoord: 0, yCoord: 0 },
-        { name: generateCardName(CARD_TYPE.HOUSE, CARD_LEVEL.LVL_1), type: CARD_TYPE.HOUSE, level: CARD_LEVEL.LVL_1, isControlled: false, xCoord: 0, yCoord: 0 },
-        { name: generateCardName(CARD_TYPE.MARKET, CARD_LEVEL.LVL_1), type: CARD_TYPE.MARKET, level: CARD_LEVEL.LVL_1, isControlled: false, xCoord: 0, yCoord: 0 },
+        { name: generateCardName(UNIQUE_LEVEL_CARD_TYPE.PRESIDENT), type: UNIQUE_LEVEL_CARD_TYPE.PRESIDENT, level: CARD_LEVEL.UNIQUE, isControlled: false, xCoord: 0, yCoord: 0 },
+        { name: generateCardName(MULTI_LEVEL_CARD_TYPE.FARM, CARD_LEVEL.LVL_1), type: MULTI_LEVEL_CARD_TYPE.FARM, level: CARD_LEVEL.LVL_1, isControlled: false, xCoord: 0, yCoord: 0 },
+        { name: generateCardName(MULTI_LEVEL_CARD_TYPE.HOUSE, CARD_LEVEL.LVL_1), type: MULTI_LEVEL_CARD_TYPE.HOUSE, level: CARD_LEVEL.LVL_1, isControlled: false, xCoord: 0, yCoord: 0 },
+        { name: generateCardName(MULTI_LEVEL_CARD_TYPE.MARKET, CARD_LEVEL.LVL_1), type: MULTI_LEVEL_CARD_TYPE.MARKET, level: CARD_LEVEL.LVL_1, isControlled: false, xCoord: 0, yCoord: 0 },
     ];
     const initialStats: PlayerStats = {
         coins:INITIAL_COINS,
@@ -40,13 +40,13 @@ export const generate_initial_state = () => {
 
 export const calculate_population_coverage = (cards: Card[]) => {
     let coverage = 0
-    if (Object.hasOwn(cards, generateCardName(CARD_TYPE.FARM, CARD_LEVEL.LVL_1))) {
+    if (Object.hasOwn(cards, generateCardName(MULTI_LEVEL_CARD_TYPE.FARM, CARD_LEVEL.LVL_1))) {
         coverage += ENTITY_POPULATION_COVERAGE.LVL1_FARM_POPULATION_COVERAGE;
     }
-    if (Object.hasOwn(cards, generateCardName(CARD_TYPE.FARM, CARD_LEVEL.LVL_2))) {
+    if (Object.hasOwn(cards, generateCardName(MULTI_LEVEL_CARD_TYPE.FARM, CARD_LEVEL.LVL_2))) {
         coverage += ENTITY_POPULATION_COVERAGE.LVL2_FARM_POPULATION_COVERAGE;
     }
-    if (Object.hasOwn(cards, generateCardName(CARD_TYPE.FARM, CARD_LEVEL.LVL_3))) {
+    if (Object.hasOwn(cards, generateCardName(MULTI_LEVEL_CARD_TYPE.FARM, CARD_LEVEL.LVL_3))) {
         coverage += ENTITY_POPULATION_COVERAGE.LVL3_FARM_POPULATION_COVERAGE;
     }
 
@@ -55,9 +55,9 @@ export const calculate_population_coverage = (cards: Card[]) => {
 
 export const calculate_pupulation = (cards:Card[]) => {
     let population = 0
-    const lvl1House = generateCardName(CARD_TYPE.HOUSE, CARD_LEVEL.LVL_1)
-    const lvl2House = generateCardName(CARD_TYPE.HOUSE, CARD_LEVEL.LVL_2)
-    const lvl3House = generateCardName(CARD_TYPE.HOUSE, CARD_LEVEL.LVL_3)
+    const lvl1House = generateCardName(MULTI_LEVEL_CARD_TYPE.HOUSE, CARD_LEVEL.LVL_1)
+    const lvl2House = generateCardName(MULTI_LEVEL_CARD_TYPE.HOUSE, CARD_LEVEL.LVL_2)
+    const lvl3House = generateCardName(MULTI_LEVEL_CARD_TYPE.HOUSE, CARD_LEVEL.LVL_3)
     for (const card of cards) {
         if (card.name === lvl1House) {
             population += ENTITY_POPULATION_VALUE.LVL1_HOUSE_POPULATION_VALUE

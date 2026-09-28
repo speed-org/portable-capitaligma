@@ -1,5 +1,5 @@
 import { CardDependencyToEvaluate, CostToEvaluate, DependencyToEvaluate, PlayerBoard } from "../../types"
-import { CARD_TYPE } from "../cards/cardConstants"
+import { CardType } from "../cards/cardTypes"
 import { getAllCardNames } from "../cards/cardHelpers"
 import { CARD_PROPERTIES } from "../cards/cardRequirements"
 
@@ -30,7 +30,7 @@ const evaluateDependencies = (dependenciesToEvaluate: Array<CardDependencyToEval
     })
 }
 
-export const isPossibleToBuildCard = (playerBoard: PlayerBoard, cardType: CARD_TYPE) => {
+export const isPossibleToBuildCard = (playerBoard: PlayerBoard, cardType: CardType) => {
     const cardProperties = CARD_PROPERTIES[cardType]
     const playerStats = playerBoard.stats
 
