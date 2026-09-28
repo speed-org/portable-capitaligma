@@ -51,7 +51,7 @@ export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, cu
 
 
     return (
-        <td onClick={() => handleCellClick()} className='cell' colSpan={cellContent? getCardNameLevel(cellContent) : 1} rowSpan={1}>
+        <td onClick={handleCellClick} className='cell' colSpan={cellContent? getCardNameLevel(cellContent) : 1} rowSpan={1}>
             {cellContent && 
             <> 
                 <CardComponent name={cellContent}/>
