@@ -1,9 +1,9 @@
-import { CARD_TYPE } from "./cardConstants";
-import { MULTI_LEVEL_CARD_NAME } from "./cardHelpers";
+import { MULTI_LEVEL_CARD_TYPE, UNIQUE_LEVEL_CARD_TYPE } from "./cardConstants";
+import { CardType } from "./cardTypes";
 import { CardProperties } from "./cardTypes";
 
-export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
-    [CARD_TYPE.FARM]: {
+export const CARD_PROPERTIES: Partial<Record<CardType, CardProperties>> = {
+    [MULTI_LEVEL_CARD_TYPE.FARM]: {
         lvl_initial: {
             cost: {
                 inCoins: 5,
@@ -16,7 +16,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         },
     },
-    [CARD_TYPE.MINE]: {
+    [MULTI_LEVEL_CARD_TYPE.MINE]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -26,7 +26,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.MARKET]: {
+    [MULTI_LEVEL_CARD_TYPE.MARKET]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -39,7 +39,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.BANK]: {
+    [MULTI_LEVEL_CARD_TYPE.BANK]: {
         lvl_initial: {
             cost: {
                 inCoins: 10,
@@ -52,7 +52,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.BARRACK]: {
+    [MULTI_LEVEL_CARD_TYPE.BARRACK]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -65,7 +65,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.AIR_FORCE]: {
+    [MULTI_LEVEL_CARD_TYPE.AIR_FORCE]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -78,7 +78,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.TECH]: {
+    [MULTI_LEVEL_CARD_TYPE.TECH]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -91,7 +91,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.HOSPITAL]: {
+    [MULTI_LEVEL_CARD_TYPE.HOSPITAL]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -104,7 +104,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.HOUSE]: {
+    [MULTI_LEVEL_CARD_TYPE.HOUSE]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -114,7 +114,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.ARMY]: {
+    [MULTI_LEVEL_CARD_TYPE.ARMY]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -124,7 +124,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.MISSILE]: {
+    [UNIQUE_LEVEL_CARD_TYPE.MISSILE]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -134,7 +134,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.HBOMB]: {
+    [UNIQUE_LEVEL_CARD_TYPE.HBOMB]: {
         lvl_initial: {
             cost: {
                 inCoins: 5
@@ -144,7 +144,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
             }
         }
     },
-    [CARD_TYPE.EMBASSY]: {
+    [UNIQUE_LEVEL_CARD_TYPE.EMBASSY]: {
         lvl_initial: {
             cost: {
                 inCoins: 5

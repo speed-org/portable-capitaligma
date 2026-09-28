@@ -1,9 +1,10 @@
-import { CARD_CATEGORY_TO_CARD_TYPE_MAP, CARD_CATEGORY, CARD_TYPE } from '../../game/cards/cardConstants'
+import { CARD_CATEGORY_TO_CARD_TYPE_MAP, CARD_CATEGORY} from '../../game/cards/cardConstants'
 import { getLowestLevelCardNameByCardType } from '../../game/cards/cardHelpers';
 import { CardComponent } from '../CardComponent';
 import {CardName, PlayerBoard} from '../../types'
 import './index.css'
 import { isPossibleToBuildCard } from '../../game/state/buildHelpers';
+import { CardType } from '../../game/cards/cardTypes';
 
 interface SideBarProps {
     setSelectedCardName: React.Dispatch<React.SetStateAction<CardName | null>>;
@@ -12,7 +13,7 @@ interface SideBarProps {
 }
 
 export const SideBar = ({ setSelectedCardName, selectedCardName, currentPlayerBoard }: SideBarProps) => {
-    const handleStyle = (cardType: CARD_TYPE) => {
+    const handleStyle = (cardType: CardType) => {
         if (selectedCardName === getLowestLevelCardNameByCardType(cardType)) {
             console.log('selected!!!', selectedCardName)
             return {border: '2px dashed red'}   
@@ -20,7 +21,7 @@ export const SideBar = ({ setSelectedCardName, selectedCardName, currentPlayerBo
         return {}
     }
 
-    const handleCardClick = (cardType: CARD_TYPE) => {
+    const handleCardClick = (cardType: CardType) => {
         const selectedCardName = getLowestLevelCardNameByCardType(cardType)
         if (!isPossibleToBuildCard(currentPlayerBoard, cardType)) {
             return;
