@@ -3,18 +3,20 @@ import { Container } from "../components/Container"
 import { GameGrid } from "../components/GameGrid"
 import { StatsBar } from "../components/StatsBar"
 import { initialGameState } from "../game/state/stateHelpers"
-import { gameReducer } from "../game/state/stateReducer"
+import { ReducerHandler } from "../game/state/stateReducer"
 import { SideBar } from "../components/SideBar"
 import { CardName } from "../types"
 import { Button } from "../components/Button"
 import { GameManager } from "../managers/gameManager"
 import { isFirstPlayerTurn } from "../game/state/playerHelpers"
+import { PlayerManager } from "../managers/playerManager"
 
 export const Game = () => {
-    const [state, dispatch] = useReducer(gameReducer, initialGameState)
+    const [state, dispatch] = useReducer(ReducerHandler, initialGameState)
     const [selectedCardName, setSelectedCardName] = useState<CardName | null>(null);
     
     const gameManager = new GameManager(dispatch)
+    const playerManager = new PlayerManager(dispatch)
 
     useEffect(() => {
         console.log(selectedCardName)
@@ -62,6 +64,7 @@ export const Game = () => {
                             selectedCardName={selectedCardName}
                             setSelectedCardName={setSelectedCardName}
                             currentTurn={state.currentTurn}
+                            playerManager={playerManager}
                         />
                         <Container style={{ height: "100%", boxSizing: "border-box", display: "flex", alignItems: "center"}}>
                             <Button onClick={gameManager.handleEndTurn}>Finish Turn</Button>

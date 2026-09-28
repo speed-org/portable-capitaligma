@@ -74,7 +74,7 @@ export const CARD_PROPERTIES: Partial<Record<CARD_TYPE, CardProperties>> = {
                 inMaterials: 5
             },
             depenends: {
-                onCards: [MULTI_LEVEL_CARD_NAME.BARRACK_LVL_1]
+                onCards: []
             }
         }
     },
