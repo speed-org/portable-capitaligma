@@ -1,49 +1,30 @@
-import { useEffect, useReducer, useState } from "react"
 import { Container } from "../components/Container"
 import { GameGrid } from "../components/GameGrid"
 import { StatsBar } from "../components/StatsBar"
-import { initialGameState } from "../game/state/stateHelpers"
-import { ReducerHandler } from "../game/state/stateReducer"
 import { SideBar } from "../components/SideBar"
-import { CardName } from "../types"
 import { Button } from "../components/Button"
-import { GameManager } from "../managers/gameManager"
 import { isFirstPlayerTurn } from "../game/state/playerHelpers"
-import { PlayerManager } from "../managers/playerManager"
+import { useGameHooks } from "../hooks/gameHook"
 
 export const Game = () => {
-    const [state, dispatch] = useReducer(ReducerHandler, initialGameState)
-    const [selectedCardName, setSelectedCardName] = useState<CardName | null>(null);
-    
-    const gameManager = new GameManager(dispatch)
-    const playerManager = new PlayerManager(dispatch)
 
-    useEffect(() => {
-        console.log(selectedCardName)
-    },[selectedCardName])
-
-    const player1Stats = state.player1.stats
-    const player2Stats = state.player2.stats
+    const gameHooks = useGameHooks()
 
     return (
         <Container style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'space-between', alignItems: 'center', overflow: 'hidden'}}>
             <Container style={{width: '20%', height: '100%'}}>
-                <SideBar
-                    currentPlayerBoard={isFirstPlayerTurn(state.currentTurn)? state.player1 : state.player2}
-                    setSelectedCardName={setSelectedCardName}
-                    selectedCardName={selectedCardName}
-                />
+                <SideBar/>
             </Container>
             <Container style={{width: '80%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-                <StatsBar coins={player1Stats.coins}
-                materials={player1Stats.materials}
-                progress={player1Stats.progress}
+                <StatsBar coins={gameHooks.firstPlayerStats.coins}
+                materials={gameHooks.firstPlayerStats.materials}
+                progress={gameHooks.firstPlayerStats.progress}
 
-                population={player1Stats.population}
-                deficit={state.player1.deficit}
-                populationCoverage={player1Stats.populationCoverage}
+                population={gameHooks.firstPlayerStats.population}
+                deficit={gameHooks.firstPlayerStats.deficit}
+                populationCoverage={gameHooks.firstPlayerStats.populationCoverage}
                 isTop={true}
-                isCurrentTurn={isFirstPlayerTurn(state.currentTurn)}
+                isCurrentTurn={isFirstPlayerTurn(gameHooks.state.currentTurn)}
                 />
                 <Container style={{
                     display:"flex",
@@ -60,25 +41,20 @@ export const Game = () => {
                         justifyContent: "space-between",
                         height: "100%",
                     }}>
-                        <GameGrid
-                            selectedCardName={selectedCardName}
-                            setSelectedCardName={setSelectedCardName}
-                            currentTurn={state.currentTurn}
-                            playerManager={playerManager}
-                        />
+                        <GameGrid/>
                         <Container style={{ height: "100%", boxSizing: "border-box", display: "flex", alignItems: "center"}}>
-                            <Button onClick={gameManager.handleEndTurn}>Finish Turn</Button>
+                            <Button onClick={gameHooks.gameManager.handleEndTurn}>Finish Turn</Button>
                         </Container>
                     </Container>
                 </Container>
-                <StatsBar coins={player2Stats.coins}
-                materials={player2Stats.materials}
-                progress={player2Stats.progress}
-                population={player2Stats.population}
-                deficit={state.player2.deficit}
-                populationCoverage={player2Stats.populationCoverage}
+                <StatsBar coins={gameHooks.secondPlayerStats.coins}
+                materials={gameHooks.secondPlayerStats.materials}
+                progress={gameHooks.secondPlayerStats.progress}
+                population={gameHooks.secondPlayerStats.population}
+                deficit={gameHooks.secondPlayerStats.deficit}
+                populationCoverage={gameHooks.secondPlayerStats.populationCoverage}
                 isTop={false}
-                isCurrentTurn={!isFirstPlayerTurn(state.currentTurn)}
+                isCurrentTurn={!isFirstPlayerTurn(gameHooks.state.currentTurn)}
                 />
             </Container>
         </Container>

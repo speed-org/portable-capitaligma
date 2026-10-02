@@ -5,14 +5,11 @@ import {CardName, PlayerBoard} from '../../types'
 import './index.css'
 import { isPossibleToBuildCard } from '../../game/state/buildHelpers';
 import { CardType } from '../../game/cards/cardTypes';
+import { useGameHooks } from '../../hooks/gameHook';
 
-interface SideBarProps {
-    setSelectedCardName: React.Dispatch<React.SetStateAction<CardName | null>>;
-    selectedCardName: CardName | null
-    currentPlayerBoard: PlayerBoard
-}
+export const SideBar = () => {
+    const {changeCardName, selectedCardName, currentPlayerBoard} = useGameHooks()
 
-export const SideBar = ({ setSelectedCardName, selectedCardName, currentPlayerBoard }: SideBarProps) => {
     const handleStyle = (cardType: CardType) => {
         if (selectedCardName === getLowestLevelCardNameByCardType(cardType)) {
             console.log('selected!!!', selectedCardName)
@@ -23,10 +20,11 @@ export const SideBar = ({ setSelectedCardName, selectedCardName, currentPlayerBo
 
     const handleCardClick = (cardType: CardType) => {
         const selectedCardName = getLowestLevelCardNameByCardType(cardType)
+        console.log("cardname selected from sidebar:", selectedCardName)
         if (!isPossibleToBuildCard(currentPlayerBoard, cardType)) {
             return;
         }
-        setSelectedCardName(selectedCardName)
+        changeCardName(selectedCardName)
     }
 
     return (

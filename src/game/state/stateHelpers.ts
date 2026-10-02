@@ -18,12 +18,12 @@ const generate_initial_board = () => {
         progress: 2,
         population: calculate_pupulation(newCards),
         populationCoverage: calculate_population_coverage(newCards),
+        deficit: INITIAL_DEFICIT,
     }
     const initialBoard: PlayerBoard = {
         cards: newCards,
         effects: INITIAL_EFFECTS,
         stats: initialStats,
-        deficit: INITIAL_DEFICIT,
     }
     return initialBoard
 }

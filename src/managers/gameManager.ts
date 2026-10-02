@@ -8,4 +8,5 @@ export class GameManager {
     public handleEndTurn = () => {
         this.dispatch({type: GAME_LEVEL_ACTION_TYPE.END_TURN})
     }
+
 }
