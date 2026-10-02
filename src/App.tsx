@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/game' element={<Game/>}></Route>
+          <Route path='/game' element={<Game/>}></Route>
         <Route path='/*' element={<NotFound/>}></Route>
       </Routes>
     </BrowserRouter>

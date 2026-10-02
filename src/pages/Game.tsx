@@ -3,12 +3,11 @@ import { GameGrid } from "../components/GameGrid"
 import { StatsBar } from "../components/StatsBar"
 import { SideBar } from "../components/SideBar"
 import { Button } from "../components/Button"
-import { isFirstPlayerTurn } from "../game/state/playerHelpers"
-import { useGameHooks } from "../hooks/gameHook"
+import { useGameContext } from "../context/gameContext"
 
 export const Game = () => {
 
-    const gameHooks = useGameHooks()
+    const gameHooks = useGameContext()
 
     return (
         <Container style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'space-between', alignItems: 'center', overflow: 'hidden'}}>
@@ -16,15 +15,9 @@ export const Game = () => {
                 <SideBar/>
             </Container>
             <Container style={{width: '80%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-                <StatsBar coins={gameHooks.firstPlayerStats.coins}
-                materials={gameHooks.firstPlayerStats.materials}
-                progress={gameHooks.firstPlayerStats.progress}
-
-                population={gameHooks.firstPlayerStats.population}
-                deficit={gameHooks.firstPlayerStats.deficit}
-                populationCoverage={gameHooks.firstPlayerStats.populationCoverage}
+                <StatsBar playerStats={gameHooks.firstPlayerStats}
                 isTop={true}
-                isCurrentTurn={isFirstPlayerTurn(gameHooks.state.currentTurn)}
+                isCurrentTurn={gameHooks.isFirstPlayerTurn}
                 />
                 <Container style={{
                     display:"flex",
@@ -47,14 +40,9 @@ export const Game = () => {
                         </Container>
                     </Container>
                 </Container>
-                <StatsBar coins={gameHooks.secondPlayerStats.coins}
-                materials={gameHooks.secondPlayerStats.materials}
-                progress={gameHooks.secondPlayerStats.progress}
-                population={gameHooks.secondPlayerStats.population}
-                deficit={gameHooks.secondPlayerStats.deficit}
-                populationCoverage={gameHooks.secondPlayerStats.populationCoverage}
+                <StatsBar playerStats={gameHooks.secondPlayerStats}
                 isTop={false}
-                isCurrentTurn={!isFirstPlayerTurn(gameHooks.state.currentTurn)}
+                isCurrentTurn={!gameHooks.isFirstPlayerTurn}
                 />
             </Container>
         </Container>

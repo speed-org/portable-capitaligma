@@ -4,7 +4,7 @@ import { CardComponent } from "../CardComponent"
 import { gameConfig } from "../../game/config";
 import { CardDetailsPopUp } from "./CardDetailsPopUp";
 import { parseCardName, getCardNameLevel, getNextLevelCardName } from "../../game/cards/cardHelpers";
-import { useGameHooks } from '../../hooks/gameHook';
+import { useGameContext } from "../../context/gameContext";
 
 
 interface GridCellProps {
@@ -12,7 +12,7 @@ interface GridCellProps {
 }
 
 export const GridCell = ({coordinates}: GridCellProps) => {
-    const gameHooks = useGameHooks()
+    const gameHooks = useGameContext()
     const [cellContent, setCellContent] = useState<CardName|null>(null);
     const [seeDetails, setSeeDetails] = useState<boolean>(false);
 
