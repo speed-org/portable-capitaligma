@@ -20,14 +20,8 @@ export const GridCell = ({coordinates}: GridCellProps) => {
     const handleCellClick = () => {
         const middleCellIndex = Math.floor(gameConfig.gameGridHeightInUnits/2)
 
-        console.log(coordinates)
-
         if (gameHooks.isFirstPlayerTurn && coordinates[0] >= middleCellIndex) return;
         if (!gameHooks.isFirstPlayerTurn && coordinates[0] < middleCellIndex) return;
-
-        // where it fails 
-        console.log("trying to render selected card name:",gameHooks.selectedCardName)
-        console.log("current cell content:",cellContent)
 
         if (gameHooks.selectedCardName && !cellContent) {
             setCellContent(gameHooks.selectedCardName)

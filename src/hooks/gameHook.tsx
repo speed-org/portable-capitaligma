@@ -13,15 +13,9 @@ export const useGameHooks = () => {
     const [selectedCardName, setSelectedCardName] = useState<CardName | null>(null);
     const gameManager = new GameManager(dispatch)
     const playerManager = new PlayerManager(dispatch)
-    
-
-    useEffect(() => {
-        console.log('a cardName has been affected:',selectedCardName)
-    },[selectedCardName])
 
     const changeSelectedCardNameValue = (cardName: CardName | null) => {
         setSelectedCardName(cardName)
-        console.log('selected cardname value has changed from hook to:',cardName)
     }
 
     const player1Stats = state.player1.stats

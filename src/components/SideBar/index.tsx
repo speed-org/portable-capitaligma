@@ -12,7 +12,6 @@ export const SideBar = () => {
 
     const handleStyle = (cardType: CardType) => {
         if (selectedCardName === getLowestLevelCardNameByCardType(cardType)) {
-            console.log('selected!!!', selectedCardName)
             return {border: '2px dashed red'}   
         }
         return {}
@@ -20,7 +19,6 @@ export const SideBar = () => {
 
     const handleCardClick = (cardType: CardType) => {
         const selectedCardName = getLowestLevelCardNameByCardType(cardType)
-        console.log("cardname selected from sidebar:", selectedCardName)
         if (!isPossibleToBuildCard(currentPlayerBoard, cardType)) {
             return;
         }
