@@ -5,10 +5,10 @@ import {CardName, PlayerBoard} from '../../types'
 import './index.css'
 import { isPossibleToBuildCard } from '../../game/state/buildHelpers';
 import { CardType } from '../../game/cards/cardTypes';
-import { useGameHooks } from '../../hooks/gameHook';
+import { useGameContext } from '../../context/gameContext';
 
 export const SideBar = () => {
-    const {changeCardName, selectedCardName, currentPlayerBoard} = useGameHooks()
+    const {changeCardName, selectedCardName, currentPlayerBoard} = useGameContext()
 
     const handleStyle = (cardType: CardType) => {
         if (selectedCardName === getLowestLevelCardNameByCardType(cardType)) {
