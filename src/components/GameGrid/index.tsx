@@ -1,18 +1,9 @@
-import { CardName } from '../../types';
 import './index.css';
 import { GridCell } from './GridCell';
 import { gameConfig } from '../../game/config';
-import { PlayerManager } from '../../managers/playerManager';
-
-interface GameGridProps extends React.HTMLAttributes<HTMLDivElement> {
-  selectedCardName: CardName | null;
-  setSelectedCardName: React.Dispatch<React.SetStateAction<CardName | null>>;
-  currentTurn: boolean
-  playerManager: PlayerManager
-}
 
 
-export const GameGrid = ({ selectedCardName, setSelectedCardName, currentTurn, style, playerManager, ...props }: GameGridProps) => {
+export const GameGrid = () => {
 
   const rows = Array(gameConfig.gameGridHeightInUnits).fill(null);
   const cols = Array(gameConfig.gameGridWidthInUnits).fill(null);
@@ -20,9 +11,7 @@ export const GameGrid = ({ selectedCardName, setSelectedCardName, currentTurn, s
   return (
     <div
       className="Component:GameGrid"
-      {...props}
       style={{
-        ...style,
         position: "relative",
       }}
     >
@@ -33,11 +22,8 @@ export const GameGrid = ({ selectedCardName, setSelectedCardName, currentTurn, s
             <tr key={i}>
               {cols.map((_, j) => (
                 <GridCell
-                  coordinates={[i,j]} selectedCardName={selectedCardName}
+                  coordinates={[i,j]}
                   key={`GameGridCell:${i},${j}`}
-                  setSelectedCardName={setSelectedCardName}
-                  currentTurn={currentTurn}
-                  playerManager={playerManager}
                 ></GridCell>
               ))}
             </tr>

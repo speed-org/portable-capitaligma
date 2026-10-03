@@ -61,12 +61,12 @@ export type PlayerStats = {
     coins: number
     materials: number
     progress: number
+    deficit: number
 }
 
 export type PlayerBoard = {
     cards: Card[]
     effects: Effect[]
-    deficit: number
     stats: PlayerStats
 }
 

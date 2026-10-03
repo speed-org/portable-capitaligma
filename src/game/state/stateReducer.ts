@@ -28,11 +28,6 @@ export function gameReducer(state: GameState, action: GAME_LEVEL_ACTION): GameSt
 export function playerReducer(state: GameState, action: PLAYER_LEVEL_ACTION): GameState {
     switch (action.type) {
         case PLAYER_LEVEL_ACTION_TYPE.BUILD_CARD:
-            if (isFirstPlayerTurn(state.currentTurn)) {
-                console.log('First player')
-            } else {
-                console.log('Second player')
-            }
             
             const currentPlayerBoard = isFirstPlayerTurn(state.currentTurn)? state.player1 : state.player2
             const builtCard = action.payload.cardName  

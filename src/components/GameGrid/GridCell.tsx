@@ -1,22 +1,18 @@
 import { useState } from "react"
 import { CardName } from "../../types"
 import { CardComponent } from "../CardComponent"
-import { isFirstPlayerTurn } from "../../game/state/playerHelpers";
 import { gameConfig } from "../../game/config";
 import { CardDetailsPopUp } from "./CardDetailsPopUp";
 import { parseCardName, getCardNameLevel, getNextLevelCardName } from "../../game/cards/cardHelpers";
-import { PlayerManager } from "../../managers/playerManager";
+import { useGameContext } from "../../context/gameContext";
+
 
 interface GridCellProps {
-    selectedCardName: CardName | null;
     coordinates: [number, number];
-    setSelectedCardName: React.Dispatch<React.SetStateAction<CardName | null>>
-    currentTurn: boolean,
-    playerManager: PlayerManager 
 }
 
-
-export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, currentTurn, playerManager}: GridCellProps) => {
+export const GridCell = ({coordinates}: GridCellProps) => {
+    const gameHooks = useGameContext()
     const [cellContent, setCellContent] = useState<CardName|null>(null);
     const [seeDetails, setSeeDetails] = useState<boolean>(false);
 
@@ -24,16 +20,13 @@ export const GridCell = ({selectedCardName, coordinates, setSelectedCardName, cu
     const handleCellClick = () => {
         const middleCellIndex = Math.floor(gameConfig.gameGridHeightInUnits/2)
 
-        console.log(coordinates)
+        if (gameHooks.isFirstPlayerTurn && coordinates[0] >= middleCellIndex) return;
+        if (!gameHooks.isFirstPlayerTurn && coordinates[0] < middleCellIndex) return;
 
-        if (isFirstPlayerTurn(currentTurn) && coordinates[0] >= middleCellIndex) return;
-        if (!isFirstPlayerTurn(currentTurn) && coordinates[0] < middleCellIndex) return;
-
-        if (selectedCardName && !cellContent) {
-            setCellContent(selectedCardName)
-            playerManager.handleCardBuild({cardName: selectedCardName})
-            
-            setSelectedCardName(null)
+        if (gameHooks.selectedCardName && !cellContent) {
+            setCellContent(gameHooks.selectedCardName)
+            gameHooks.playerManager.handleCardBuild({cardName: gameHooks.selectedCardName})
+            gameHooks.changeCardName(gameHooks.selectedCardName)
             return
         };
 

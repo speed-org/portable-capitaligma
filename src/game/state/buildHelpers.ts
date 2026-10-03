@@ -22,7 +22,6 @@ const evaluateDependencies = (dependenciesToEvaluate: Array<CardDependencyToEval
 
         if (Array.isArray(depends) && Array.isArray(currentResource)) {
             const cardResults = depends.every((requiredCard) => currentResource.includes(requiredCard))
-            console.log('card dependency results:', cardResults)
             return cardResults
         }
 
