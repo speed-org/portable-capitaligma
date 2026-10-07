@@ -27,6 +27,7 @@ export function gameReducer(state: GameState, action: GAME_LEVEL_ACTION): GameSt
 
 export function playerReducer(state: GameState, action: PLAYER_LEVEL_ACTION): GameState {
     switch (action.type) {
+        
         case PLAYER_LEVEL_ACTION_TYPE.BUILD_CARD:
             
             const currentPlayerBoard = isFirstPlayerTurn(state.currentTurn)? state.player1 : state.player2
@@ -45,9 +46,15 @@ export function playerReducer(state: GameState, action: PLAYER_LEVEL_ACTION): Ga
             }
 
             return isFirstPlayerTurn(state.currentTurn)? {...state,  player1: newPlayerBoard} : {...state,  player2: newPlayerBoard}
+        
+        case PLAYER_LEVEL_ACTION_TYPE.COLLECT_RESOURCES:
+            const list_cards = action.payload.currentPlayerBoard.cards
 
+            return {...state}
+        
         default:
             // No matching action: return state unchanged (no re-render).
             return state
     }
+
 }

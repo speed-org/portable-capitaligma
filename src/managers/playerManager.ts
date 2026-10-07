@@ -1,5 +1,5 @@
 import React from "react"
-import { BUILD_CARD_PAYLOAD, PLAYER_LEVEL_ACTION } from "../game/state/stateTypes"
+import { BUILD_CARD_PAYLOAD, PLAYER_LEVEL_ACTION, COLLECT_RESOURCES_PAYLOAD } from "../game/state/stateTypes"
 import { PLAYER_LEVEL_ACTION_TYPE } from "../constants"
 
 export class PlayerManager {
@@ -10,5 +10,8 @@ export class PlayerManager {
     public handleCardBuild = (payload: BUILD_CARD_PAYLOAD) => {
         this.dispatch({type: PLAYER_LEVEL_ACTION_TYPE.BUILD_CARD, payload: payload})
     }
-}
 
+    public handleCollectResources = (payload: COLLECT_RESOURCES_PAYLOAD) => {
+        this.dispatch({type: PLAYER_LEVEL_ACTION_TYPE.COLLECT_RESOURCES, payload: payload})
+    }
+}

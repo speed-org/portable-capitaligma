@@ -16,7 +16,7 @@ const generate_initial_board = () => {
         coins:INITIAL_COINS,
         materials: INITIAL_MATERIALS,
         progress: 2,
-        population: calculate_pupulation(newCards),
+        population: calculate_population(newCards),
         populationCoverage: calculate_population_coverage(newCards),
         deficit: INITIAL_DEFICIT,
     }
@@ -53,7 +53,7 @@ export const calculate_population_coverage = (cards: Card[]) => {
     return coverage
 }
 
-export const calculate_pupulation = (cards:Card[]) => {
+export const calculate_population = (cards:Card[]) => {
     let population = 0
     const lvl1House = generateCardName(MULTI_LEVEL_CARD_TYPE.HOUSE, CARD_LEVEL.LVL_1)
     const lvl2House = generateCardName(MULTI_LEVEL_CARD_TYPE.HOUSE, CARD_LEVEL.LVL_2)
@@ -71,6 +71,7 @@ export const calculate_pupulation = (cards:Card[]) => {
     }
     return population
 }
+
 
 export const initialGameState = generate_initial_state()
 

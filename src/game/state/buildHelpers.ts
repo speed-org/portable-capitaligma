@@ -1,7 +1,7 @@
-import { CardDependencyToEvaluate, CostToEvaluate, DependencyToEvaluate, PlayerBoard } from "../../types"
-import { CardType } from "../cards/cardTypes"
+import { CardDependencyToEvaluate, CardName, CostToEvaluate, DependencyToEvaluate, PlayerBoard } from "../../types"
+import { CardDependencyDetails, CardType } from "../cards/cardTypes"
 import { getAllCardNames } from "../cards/cardHelpers"
-import { CARD_PROPERTIES } from "../cards/cardRequirements"
+import { CARD_PROPERTIES } from "../cards/cardProperties"
 
 
 const eveluateCosts = (costsToEvaluate: CostToEvaluate[]) => {
@@ -14,14 +14,22 @@ const eveluateCosts = (costsToEvaluate: CostToEvaluate[]) => {
     });
 }
 
+const isDependencyCardDependent = (dependency: CardDependencyDetails[] | number):dependency is CardDependencyDetails[]  => {
+    return Array.isArray(dependency)
+}
+
+const isCurrentResourceCardDependent = (currentResource: CardName[] | number):currentResource is CardName[]  => {
+    return Array.isArray(currentResource)
+}
+
 const evaluateDependencies = (dependenciesToEvaluate: Array<CardDependencyToEvaluate | DependencyToEvaluate>) => {
     return dependenciesToEvaluate.every((dependency) => {
         const {depends, currentResource} = {...dependency}
 
         if (!depends) return true;
 
-        if (Array.isArray(depends) && Array.isArray(currentResource)) {
-            const cardResults = depends.every((requiredCard) => currentResource.includes(requiredCard))
+        if (isDependencyCardDependent(depends) && isCurrentResourceCardDependent(currentResource)) {
+            const cardResults = depends.every((dependencyDetail) => currentResource.includes(dependencyDetail.cardName))
             return cardResults
         }
 
