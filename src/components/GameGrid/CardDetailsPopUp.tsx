@@ -1,6 +1,6 @@
 import { CardType, LevelDetails } from "../../game/cards/cardTypes";
 import { Container } from "../Container"
-import { CARD_PROPERTIES } from "../../game/cards/cardRequirements";
+import { CARD_PROPERTIES } from "../../game/cards/cardProperties";
 import { Button } from "../Button";
 import { hasKey } from "../../helpers";
 import "./index.css"
@@ -33,7 +33,7 @@ function generateKeyDetailsSummary (obj: object) {
 
 const evaluateCost = (levelDetails: LevelDetails) => {
     let costSummary = generateKeyDetailsSummary(levelDetails.cost)
-    let profitSummary = generateKeyDetailsSummary(levelDetails.profit)
+    let profitSummary = generateKeyDetailsSummary(levelDetails.profit || {})
     let dependencySummary = generateKeyDetailsSummary(levelDetails.depenends || {})
     
 

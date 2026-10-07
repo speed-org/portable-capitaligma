@@ -3,6 +3,8 @@ import { MULTI_LEVEL_CARD_TYPE, UNIQUE_LEVEL_CARD_TYPE } from "./cardConstants"
 
 export type CardType = MULTI_LEVEL_CARD_TYPE | UNIQUE_LEVEL_CARD_TYPE
 
+export type CardDependencyDetails = {cardName: CardName, numberOfCards?: number}
+
 export type CardCost = {
     inCoins?: number,
     inMaterials?: number,
@@ -14,7 +16,7 @@ export type CardDependency = {
     onPopulation?: number,
     onPopulationCoverage?: number,
     onProgress?: number,
-    onCards?: CardName[]
+    onCards?: CardDependencyDetails[]
 }
 
 export type CardProfit = {
@@ -23,11 +25,12 @@ export type CardProfit = {
     inPopulation?: number,
     inProgress?: number,
     inPopulationCoverage?: number,
+
 }
 
 export type LevelDetails = {
     cost: CardCost,
-    profit: CardProfit
+    profit?: CardProfit
     depenends?: CardDependency
 }
 

@@ -2,8 +2,8 @@ import { CARD_LEVEL, UNIQUE_LEVEL_CARD_TYPE } from './cardConstants'
 
 import { Card, CardName } from "../../types"
 import { gameConfig } from '../config'
-import { CARD_PROPERTIES } from './cardRequirements'
-import { CardType } from './cardTypes'
+import { CARD_PROPERTIES } from './cardProperties'
+import { CardType, LevelDetails } from './cardTypes'
 
 export function isUniqueCardType (cardType: CardType): cardType is UNIQUE_LEVEL_CARD_TYPE {
     return Object.values(UNIQUE_LEVEL_CARD_TYPE).includes(cardType as UNIQUE_LEVEL_CARD_TYPE)
@@ -68,17 +68,28 @@ export function getNextLevelCardName(cardName: CardName): CardName {
     return generateCardName(cardType, cardLevel === CARD_LEVEL.LVL_1? CARD_LEVEL.LVL_2 :CARD_LEVEL.LVL_3)
 }
 
-export function getCardCostByCardName(cardName: CardName) {
+export function getCardPropertiesByCardName(cardName: CardName) {
     const { cardType, cardLevel } = parseCardName(cardName)
     const cardProperties = CARD_PROPERTIES[cardType]
 
     if (!cardProperties) return; 
 
     if (cardLevel === CARD_LEVEL.UNIQUE || cardLevel === CARD_LEVEL.LVL_1) {
-        const levelProperties = cardProperties.lvl_initial
-        return levelProperties.cost
+        return cardProperties.lvl_initial
     }
 }
+
+export function getCardCostByCardName(cardName: CardName) {
+    const levelProperties = getCardPropertiesByCardName(cardName)
+
+    if (levelProperties) return levelProperties.cost
+    }
+
+export function getCardProfitByCardName(cardName: CardName) {
+    const levelProperties = getCardPropertiesByCardName(cardName)
+
+    if (levelProperties) return levelProperties.profit
+    }
 
 export function isMaxLevelCardName(cardName:CardName): boolean {
     const {cardType} = parseCardName(cardName)

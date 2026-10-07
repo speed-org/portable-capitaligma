@@ -1,6 +1,6 @@
 import { EFFECT_CATEGORY, EFFECT_WEIGHT, RESOURCE_TYPE, EFFECT_LEVEL_DEPENDENCY, LEADERSHIP, EFFECT_DURATION_IN_TURNS, EVENT_CARD_NAME, ACTION, GAME_LEVEL_ACTION_TYPE } from "./constants"
 import { CARD_LEVEL, MULTI_LEVEL_CARD_TYPE, UNIQUE_LEVEL_CARD_TYPE } from "./game/cards/cardConstants"
-import { CardType } from "./game/cards/cardTypes"
+import { CardDependencyDetails, CardType } from "./game/cards/cardTypes"
 
 export type Effect = PassiveEffect | ImmediateEffect
 
@@ -92,6 +92,6 @@ export type DependencyToEvaluate = {
 }
 
 export type CardDependencyToEvaluate = {
-    depends?: CardName[]
+    depends?: CardDependencyDetails[]
     currentResource: CardName[]
 }
